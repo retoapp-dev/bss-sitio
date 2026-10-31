@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23111%27/%3E%3Ctext x=%2732%27 y=%2741%27 font-family=%27Arial%27 font-weight=%27800%27 font-size=%2722%27 fill=%27%23fff%27 text-anchor=%27middle%27%3EBSS%3C/text%3E%3C/svg%3E">
+<title>BSS Business Solutions Software</title>
+<meta name="description" content="BSS: ventas, gastos, stock, clientes y proveedores en un solo lugar, para cualquier negocio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: black-and-white editorial bands, ledger-style lists; the product mock is the one bold moment. */
+:root {
+  --bg: #f4f4f3;
+  --surface: #ffffff;
+  --soft: #fafaf9;
+  --ink: #111111;
+  --muted: #4a4a49;
+  --faint: #5d5d5c;
+  --line: #dcdcda;
+  --invert-bg: #0d0d0d;
+  --invert-fg: #f3f3f2;
+  --invert-muted: #bcbcba;
+  --bar: #111111;
+  --alert: #b42318;
+  --font-display: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
+    --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
+  --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: clamp(64px, 9vw, 104px); }
+.band.surface { background: var(--surface); border-block: 1px solid var(--line); }
+.band.invert { background: var(--invert-bg); color: var(--invert-fg); }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+.invert .eyebrow { color: var(--invert-muted); }
+.h2 { font-weight: 800; font-size: clamp(30px, 4.2vw, 50px); line-height: 1.06; letter-spacing: -0.035em; }
+.lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 62ch; }
+.intro { display: grid; gap: 14px; max-width: 780px; }
+.stack { display: grid; gap: clamp(28px, 4vw, 40px); }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark { width: 38px; height: 38px; border-radius: 10px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font: 800 13px/1 var(--font-display); letter-spacing: -0.04em; }
+.brand strong { display: block; font: 800 18px/1.1 var(--font-display); }
+.brand small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
+.nav a { text-decoration: none; font-size: 14px; padding: 10px 12px; border-radius: 8px; }
+.nav a:hover { background: var(--line); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 12px; font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--ink); transition: transform .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn.solid { background: var(--ink); color: var(--bg); }
+.btn.ghost { background: var(--surface); border-color: var(--line); }
+.nav .btn { min-height: 40px; padding: 0 16px; font-size: 14px; margin-left: 6px; color: var(--bg); }
+.nav .btn:hover { background: var(--ink); }
+.btn svg { width: 18px; height: 18px; }
+@media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(36px, 6vw, 64px); align-items: center; padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 88px); }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero h1 { font-weight: 800; font-size: clamp(42px, 6.4vw, 78px); line-height: 0.98; letter-spacing: -0.045em; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+.ticks li { display: flex; align-items: center; gap: 8px; }
+.ticks svg { width: 16px; height: 16px; flex: none; }
+
+/* Product mock */
+.mock { margin: 0; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: 0 30px 70px rgba(0,0,0,.12); overflow: hidden; min-width: 0; }
+.mock-dots { display: flex; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.mock-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.mock-body { display: flex; }
+.mock-side { width: 110px; flex: none; background: #0a0a0a; padding: 16px 12px; display: grid; align-content: start; gap: 10px; }
+.mock-side .m { width: 28px; height: 28px; border-radius: 8px; background: #fff; color: #111; display: grid; place-items: center; font: 800 10px var(--font-display); }
+.mock-side i { display: block; height: 8px; border-radius: 4px; background: rgba(255,255,255,.3); }
+.mock-side i:first-of-type { background: rgba(255,255,255,.8); }
+.mock-main { flex: 1; min-width: 0; padding: 16px; display: grid; gap: 14px; }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.kpi { border: 1px solid var(--line); border-radius: 10px; padding: 10px; min-width: 0; }
+.kpi small { display: block; font-size: 10px; color: var(--faint); }
+.kpi b { display: block; font: 800 clamp(13px, 1.6vw, 18px) var(--font-display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kpi em { display: block; font-style: normal; font-size: 10px; color: var(--faint); }
+.kpi em.alert { color: var(--alert); }
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 118px; border-bottom: 1px solid var(--line); }
+.bars span { flex: 1; background: var(--bar); border-radius: 4px 4px 0 0; transform-origin: bottom; animation: grow .9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes grow { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .bars span { animation: none; } }
+.rows { display: grid; font-size: 12px; }
+.rows div { display: flex; justify-content: space-between; gap: 8px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+.rows div:last-child { border-bottom: 0; }
+.rows b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mock figcaption { padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--faint); }
+
+/* Who it's for */
+.who { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.who li { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; align-content: start; gap: 8px; background: var(--soft); }
+.who svg { width: 26px; height: 26px; }
+.who strong { font: 700 17px var(--font-display); }
+.who span { font-size: 14px; color: var(--muted); }
+.promise { border-radius: var(--radius); background: var(--invert-bg); color: var(--invert-fg); padding: clamp(22px, 3vw, 30px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px; }
+.promise strong { display: block; font: 700 18px var(--font-display); margin-bottom: 6px; }
+.promise span { font-size: 15px; color: var(--invert-muted); }
+
+/* What it does */
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.pillar { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: 28px; display: grid; align-content: start; gap: 14px; }
+.pillar h3 { font-weight: 800; font-size: 28px; letter-spacing: -0.02em; }
+.pillar > p { color: var(--muted); }
+.pillar ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 15px; }
+
+/* Steps (a real sequence) */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 2px solid var(--invert-fg); padding-top: 18px; display: grid; gap: 8px; }
+.steps li::before { content: "Paso " counter(s); font-size: 13px; font-weight: 600; color: var(--invert-muted); }
+.steps strong { font: 700 21px var(--font-display); }
+.steps span { color: var(--invert-muted); }
+
+/* For everyone */
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(32px, 5vw, 56px); align-items: start; }
+.access { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.access li { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 20px; display: grid; gap: 6px; }
+.access strong { font: 700 16px var(--font-display); }
+.access span { font-size: 14px; color: var(--muted); }
+
+/* Trust */
+.trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.trust div { display: grid; align-content: start; gap: 10px; padding: 24px; border-radius: var(--radius); background: var(--bg); }
+.trust svg { width: 26px; height: 26px; }
+.trust strong { font: 700 17px var(--font-display); }
+.trust span { font-size: 14px; color: var(--muted); }
+
+/* Founder */
+.founder { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px; align-items: center; }
+.photo { border-radius: 20px; background: var(--line); min-height: 300px; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--faint); font-size: 14px; }
+.founder-copy { display: grid; gap: 16px; min-width: 0; }
+.placeholder { border: 1px dashed var(--faint); border-radius: 10px; padding: 12px 14px; color: var(--faint); font-size: 15px; }
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.contact code { font-family: var(--font-body); font-size: 16px; font-weight: 600; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); user-select: all; word-break: break-all; }
+.copy { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); font: 600 14px var(--font-body); cursor: pointer; }
+
+/* FAQ */
+.faq { max-width: 860px; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-weight: 600; font-size: 17px; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary span { font-size: 26px; line-height: 1; transition: transform .2s; }
+.faq details[open] summary span { transform: rotate(45deg); }
+.faq details p { padding-bottom: 20px; color: var(--muted); max-width: 70ch; }
+
+/* Closing */
+.close { padding-block: 24px; }
+.close-card { border-radius: 24px; background: var(--invert-bg); color: var(--invert-fg); padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
+.close-card h2 { font-weight: 800; font-size: clamp(30px, 4.4vw, 54px); line-height: 1.04; letter-spacing: -0.035em; max-width: 16ch; }
+.close-card p { color: var(--invert-muted); margin-top: 12px; }
+.close-card .btn { background: var(--invert-fg); color: var(--invert-bg); border-color: var(--invert-fg); min-height: 52px; font-size: 17px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 32px 48px; font-size: 14px; color: var(--muted); }
+footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="BSS, ir al inicio"><span class="mark" aria-hidden="true">BSS</span><span><strong>BSS</strong><small>Business Solutions Software</small></span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#que-hace">Qué hace</a>
+      <a href="#para-quien">Para quién</a>
+      <a href="#confianza">Confianza</a>
+      <a href="#preguntas">Preguntas</a>
+      <a class="btn solid" href="#empezar">Probar gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="inicio" class="wrap hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Gestión simple para cualquier negocio</p>
+      <h1>Tu negocio, ordenado. Del tamaño que sea.</h1>
+      <p class="lead">BSS reúne en un solo lugar tus ventas, gastos, stock, clientes y proveedores. Para el kiosco del barrio, el emprendimiento que arrancó en la cocina de casa o el comercio con equipo. Sin saber de contabilidad y sin instalar nada.</p>
+      <div class="ctas">
+        <a class="btn solid" href="#empezar">Crear mi cuenta gratis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost" href="#que-hace">Ver qué hace</a>
+      </div>
+      <ul class="ticks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Funciona en el celular y en la computadora</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Con cualquier correo</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Tus datos son tuyos</li>
+      </ul>
+    </div>
+    <figure class="mock" aria-label="Vista de ejemplo del resumen de BSS">
+      <div class="mock-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="mock-body">
+        <div class="mock-side" aria-hidden="true"><span class="m">BSS</span><i style="width:80%"></i><i style="width:64%"></i><i style="width:72%"></i><i style="width:56%"></i><i style="width:68%"></i></div>
+        <div class="mock-main">
+          <div class="kpis">
+            <div class="kpi"><small>Ventas</small><b>$ 183.235</b><em>+4 % vs mes anterior</em></div>
+            <div class="kpi"><small>Gastos</small><b>$ 84.900</b><em>−10 % vs mes anterior</em></div>
+            <div class="kpi"><small>Te deben</small><b>$ 5.460</b><em class="alert">1 vencido</em></div>
+          </div>
+          <div class="bars" aria-hidden="true">
+            <span style="height:38%;animation-delay:.02s"></span><span style="height:52%;animation-delay:.06s"></span><span style="height:44%;animation-delay:.1s"></span><span style="height:61%;animation-delay:.14s"></span><span style="height:57%;animation-delay:.18s"></span><span style="height:72%;animation-delay:.22s"></span><span style="height:66%;animation-delay:.26s"></span><span style="height:80%;animation-delay:.3s"></span><span style="height:74%;animation-delay:.34s"></span><span style="height:92%;animation-delay:.38s"></span>
+          </div>
+          <div class="rows">
+            <div><span>Venta: 2× Torta de chocolate</span><b>+$ 1.700</b></div>
+            <div><span>Compra: 40× Pan de molde</span><b>−$ 9.400</b></div>
+            <div><span>Venta: 3× Medialunas</span><b>+$ 660</b></div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Así se ve tu resumen. Cifras de un negocio de ejemplo.</figcaption>
+    </figure>
+  </section>
+
+  <section id="para-quien" class="band surface" aria-labelledby="t-quien">
+    <div class="wrap stack">
+      <div class="intro">
+        <p class="eyebrow">Para quién es</p>
+        <h2 id="t-quien" class="h2">Para todos los que venden algo. Sin excepciones.</h2>
+        <p class="lead">No importa si recién empiezas o si llevas veinte años, si vendes en un local, por redes o en la feria del domingo. Si alguna vez anotaste una venta en un cuaderno, BSS es para ti.</p>
+      </div>
+      <ul class="who">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18l-1.5-5h-15z"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></svg><strong>Almacenes y kioscos</strong><span>Muchos productos, ventas rápidas y stock que se mueve todo el día.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a8 4 0 0 1 16 0v2H4z"/><path d="M6 13v6h12v-6"/></svg><strong>Panaderías y gastronomía</strong><span>Insumos, pedidos por encargo y clientes que pagan a fin de mes.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.6 7.6 20 18M8.6 16.4 20 6"/></svg><strong>Peluquerías y servicios</strong><span>Cada cobro registrado, clientes frecuentes y gastos fijos bajo control.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5z"/></svg><strong>Talleres y oficios</strong><span>Presupuestos con tu nombre, repuestos y proveedores en orden.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c0 2-1.8 3-4 3S8 5 8 3z"/></svg><strong>Tiendas de ropa y regalos</strong><span>Saber qué se vende más y qué conviene reponer antes de que falte.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><strong>Emprendimientos desde casa</strong><span>Lo que haces en tu cocina o tu taller, con números claros desde el primer día.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><strong>Ventas por redes y ferias</strong><span>Cobras desde el celular, donde estés, y todo queda anotado.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg><strong>Profesionales independientes</strong><span>Quién te pagó, quién te debe y cuánto IVA cobraste en el mes.</span></li>
+      </ul>
+      <div class="promise">
+        <div><strong>No necesitas saber de números</strong><span>Palabras simples: "te deben", "se va en", "queda poco". Nada de jerga contable.</span></div>
+        <div><strong>Si usas el celular, puedes usar BSS</strong><span>Botones grandes, pantallas claras y nada que instalar.</span></div>
+        <div><strong>Empiezas con lo que ya tienes</strong><span>Tu lista de Excel, tu tabla de Word o una hoja de Google entran solas.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="que-hace" class="band" aria-labelledby="t-hace">
+    <div class="wrap stack">
+      <div class="intro">
+        <p class="eyebrow">Qué hace</p>
+        <h2 id="t-hace" class="h2">Vender, controlar y entender. En un solo lugar.</h2>
+      </div>
+      <div class="pillars">
+        <article class="pillar"><h3>Vender</h3><p>Cobra en segundos y deja todo anotado sin pensar.</p><ul><li><strong>Venta rápida:</strong> tocas los productos, cobras y te calcula el vuelto.</li><li><strong>Fiado y cuenta corriente:</strong> lo que te deben, con fecha de vencimiento.</li><li><strong>Presupuestos y recibos</strong> con el nombre de tu negocio, en PDF.</li><li><strong>Clientes:</strong> quién te compra y cuánto.</li></ul></article>
+        <article class="pillar"><h3>Controlar</h3><p>Que nada se pierda: ni mercadería, ni plata, ni vencimientos.</p><ul><li><strong>Stock:</strong> baja solo con cada venta y avisa cuando queda poco.</li><li><strong>Compras a proveedores:</strong> suman stock y registran el gasto a la vez.</li><li><strong>Gastos fijos</strong> que se anotan solos cada mes.</li><li><strong>Límites de gasto</strong> por categoría, con aviso al pasarte.</li></ul></article>
+        <article class="pillar"><h3>Entender</h3><p>Números claros para decidir qué sigue.</p><ul><li><strong>Resumen del mes</strong> comparado con el anterior.</li><li><strong>Qué productos te dejan más ganancia</strong> y cuáles no.</li><li><strong>IVA del período:</strong> lo que cobraste y lo que pagaste.</li><li><strong>Todo en Excel</strong> cuando lo quieras llevar a tu contador.</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band invert" aria-labelledby="t-como">
+    <div class="wrap stack">
+      <h2 id="t-como" class="h2">Empezar lleva cinco minutos.</h2>
+      <ol class="steps">
+        <li><strong>Crea tu cuenta</strong><span>Con tu correo y una contraseña. Eliges tu moneda: pesos uruguayos, argentinos, dólares y más.</span></li>
+        <li><strong>Trae lo que ya tienes</strong><span>Importa tu inventario desde Excel, Word o Google Sheets. O mira la app llena con datos de ejemplo.</span></li>
+        <li><strong>Vende y mira tus números</strong><span>Cada venta, compra y gasto se refleja al instante en tu resumen.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="t-todos">
+    <div class="wrap split">
+      <div class="intro">
+        <p class="eyebrow">Pensada para todos</p>
+        <h2 id="t-todos" class="h2">Cómoda de usar, para cualquier persona.</h2>
+        <p class="lead">Una herramienta de gestión no debería ser solo para quien sabe de computadoras. Por eso BSS está hecha para que nadie se quede afuera.</p>
+      </div>
+      <ul class="access">
+        <li><strong>Alto contraste</strong><span>Blanco y negro, letras legibles y modo oscuro para quien lo prefiera.</span></li>
+        <li><strong>Lenguaje simple</strong><span>Todo en español claro, sin términos técnicos ni contables.</span></li>
+        <li><strong>En cualquier pantalla</strong><span>Celular, tablet o computadora, sin instalar nada.</span></li>
+        <li><strong>Tu moneda, tu país</strong><span>Monedas y husos horarios de toda la región, con tu tasa de IVA.</span></li>
+        <li><strong>Trabaja en equipo</strong><span>Dale acceso a quien te ayuda, sin que pueda borrar datos.</span></li>
+        <li><strong>A tu ritmo</strong><span>Usa solo lo que necesitas hoy y suma el resto cuando quieras.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="confianza" class="band surface" aria-labelledby="t-confianza">
+    <div class="wrap stack">
+      <div class="intro">
+        <p class="eyebrow">Confianza</p>
+        <h2 id="t-confianza" class="h2">Tu información, cuidada y siempre tuya.</h2>
+        <p class="lead">Confiarle los números de tu negocio a una aplicación no es poca cosa. Esto es lo que hacemos para merecerlo.</p>
+      </div>
+      <div class="trust">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><strong>Cada negocio ve solo lo suyo</strong><span>Tus datos están separados de los de cualquier otra cuenta. Nadie más puede verlos.</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.2-8.2M17 6l2 2M15 8l2 2"/></svg><strong>Contraseñas cifradas</strong><span>Nunca guardamos tu contraseña en texto legible, y al cambiarla se cierran tus otras sesiones.</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg><strong>Descárgalo todo cuando quieras</strong><span>Un botón y tienes todos tus datos en un Excel. Sin pedir permiso a nadie.</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6"/><path d="M6 7l1 13h10l1-13M9 7V4h6v3"/></svg><strong>Te vas cuando quieras</strong><span>Puedes eliminar tu cuenta y todo lo que cargaste desde Ajustes, sin trámites.</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg><strong>Sin publicidad</strong><span>No vendemos ni compartimos tus datos con nadie para publicidad.</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z"/></svg><strong>Una persona real detrás</strong><span>¿Una duda o un problema? Escribes y te responde quien hace BSS.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="t-founder">
+    <div class="wrap founder">
+      <div class="photo">[TU FOTO: una imagen tuya o de tu lugar de trabajo]</div>
+      <div class="founder-copy">
+        <p class="eyebrow">Quién hace BSS</p>
+        <h2 id="t-founder" class="h2">Hola, soy Simon Schmidt.</h2>
+        <p class="placeholder">[Contá en dos o tres líneas por qué creaste BSS: qué problema viste en los negocios que conocés y qué querés que BSS cambie para ellos.]</p>
+        <p class="lead">Si tienes una idea, una duda o algo no funciona como esperas, escríbeme. Leo cada mensaje.</p>
+        <div class="contact"><code id="mail">support.businesssoftware@gmail.com</code><button class="copy" id="copy-mail" type="button">Copiar correo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preguntas" class="band surface" aria-labelledby="t-faq">
+    <div class="wrap faq stack">
+      <h2 id="t-faq" class="h2">Preguntas frecuentes</h2>
+      <div class="faq-list">
+        <details><summary>¿Cuánto cuesta?<span aria-hidden="true">+</span></summary><p>Crear la cuenta y empezar es gratis. <span class="placeholder" style="display:inline-block;padding:2px 8px">[Definí tus planes y precios, o si será gratis durante un tiempo.]</span></p></details>
+        <details><summary>¿Tengo que instalar algo?<span aria-hidden="true">+</span></summary><p>No. BSS funciona en el navegador del celular, la tablet o la computadora. Entras con tu correo y contraseña desde donde estés.</p></details>
+        <details><summary>No sé nada de contabilidad, ¿la puedo usar?<span aria-hidden="true">+</span></summary><p>Sí. Está pensada justamente para eso: anotas ventas y gastos con palabras de todos los días y BSS hace las cuentas por ti. Además puedes probarla con datos de ejemplo antes de cargar los tuyos.</p></details>
+        <details><summary>Ya tengo todo en Excel, ¿lo pierdo?<span aria-hidden="true">+</span></summary><p>No. Puedes importar tu inventario desde Excel, Word o Google Sheets, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato.</p></details>
+        <details><summary>¿Puede usarla alguien de mi equipo?<span aria-hidden="true">+</span></summary><p>Sí. Desde Ajustes le das acceso con su propio usuario. Puede cargar ventas, compras y productos, pero no borrar datos ni cambiar la configuración.</p></details>
+        <details><summary>¿Reemplaza a mi contador o emite facturas?<span aria-hidden="true">+</span></summary><p>No. BSS te ayuda a ordenar y entender tu negocio, y te da todo listo en Excel para tu contador. Los recibos y presupuestos no son facturas fiscales y el cálculo de IVA es orientativo.</p></details>
+        <details><summary>¿Qué pasa si dejo de usarla?<span aria-hidden="true">+</span></summary><p>Descargas todos tus datos en Excel y, si quieres, eliminas tu cuenta desde Ajustes. Se borra todo, sin trámites.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="empezar" class="close" aria-labelledby="t-empezar">
+    <div class="wrap">
+      <div class="close-card">
+        <div><h2 id="t-empezar">Tu negocio merece números claros.</h2><p>Crea tu cuenta en un minuto y mira BSS funcionando con datos de ejemplo.</p></div>
+        <a class="btn" href="#empezar" aria-describedby="link-note">Crear mi cuenta gratis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <p id="link-note" class="eyebrow" style="margin-top:12px">Vista previa · el botón llevará a la app cuando esté publicada</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 BSS · Business Solutions Software · Hecho por Simon Schmidt</span>
+    <nav aria-label="Enlaces"><a href="#preguntas">Preguntas</a><a href="#confianza">Confianza</a><span>support.businesssoftware@gmail.com</span></nav>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy-mail');
+    var mail = document.getElementById('mail');
+    btn.addEventListener('click', function () {
+      var text = mail.textContent.trim();
+      var done = function () { btn.textContent = 'Copiado'; setTimeout(function () { btn.textContent = 'Copiar correo'; }, 1800); };
+      var select = function () { var r = document.createRange(); r.selectNodeContents(mail); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Seleccionado: cópialo'; };
+      try { navigator.clipboard.writeText(text).then(done, select); } catch (e) { select(); }
+    });
+  })();
+</script>
+</body>
+</html>
