@@ -164,6 +164,8 @@ main section[id] { scroll-margin-top: 76px; }
 .founder { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px; align-items: center; }
 .photo { border-radius: 20px; background: var(--line); min-height: 300px; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--faint); font-size: 14px; }
 .founder-copy { display: grid; gap: 16px; min-width: 0; }
+.story { color: var(--ink); font-size: clamp(18px, 1.8vw, 21px); line-height: 1.55; }
+.story strong { font-weight: 700; }
 .placeholder { border: 1px dashed var(--faint); border-radius: 10px; padding: 12px 14px; color: var(--faint); font-size: 15px; }
 .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .contact code { font-family: var(--font-body); font-size: 16px; font-weight: 600; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); user-select: all; word-break: break-all; }
@@ -337,7 +339,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
       <div class="founder-copy">
         <p class="eyebrow">Quién hace BSS</p>
         <h2 id="t-founder" class="h2">Hola, soy Simon Schmidt.</h2>
-        <p class="placeholder">[Contá en dos o tres líneas por qué creaste BSS: qué problema viste en los negocios que conocés y qué querés que BSS cambie para ellos.]</p>
+        <p class="lead story">Grande o chico, recién empezando o con años de camino: todo negocio merece tener sus números claros. Creé BSS con una sola idea en mente: <strong>ahorrarle tiempo a las personas</strong>. Ventas, gastos, stock, clientes y proveedores en un solo lugar, explicados con palabras simples. Menos tiempo haciendo cuentas, más tiempo haciendo crecer lo tuyo.</p>
         <p class="lead">Si tienes una idea, una duda o algo no funciona como esperas, escríbeme. Leo cada mensaje.</p>
         <div class="contact"><code id="mail">support.businesssoftware@gmail.com</code><button class="copy" id="copy-mail" type="button">Copiar correo</button></div>
       </div>
