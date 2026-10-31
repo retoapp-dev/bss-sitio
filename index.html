@@ -43,7 +43,6 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
@@ -72,7 +71,13 @@ p { margin: 0; }
 .brand small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
 .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
 .nav a { text-decoration: none; font-size: 14px; padding: 10px 12px; border-radius: 8px; }
-.nav a:hover { background: var(--line); }
+.nav a { position: relative; transition: background .25s ease, color .25s ease; }
+.nav a:not(.btn)::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 5px; height: 2px; border-radius: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.nav a:not(.btn):hover::after, .nav a.active::after { transform: scaleX(1); }
+.nav a:not(.btn):hover { background: var(--line); }
+main section[id] { scroll-margin-top: 76px; }
+@keyframes arrive { from { opacity: .35; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.arrive .intro, .arrive > .wrap > h2, .arrive .founder-copy { animation: arrive .6s cubic-bezier(.2,.7,.2,1) both; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 12px; font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--ink); transition: transform .15s ease; }
 .btn:hover { transform: translateY(-1px); }
 .btn.solid { background: var(--ink); color: var(--bg); }
@@ -372,6 +377,56 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 </footer>
 
 <script>
+  (function () {
+    // Smooth, eased scroll for the in-page links, with the sticky header taken into account.
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var header = document.querySelector('.top');
+    var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+    var running = null;
+    function glide(target) {
+      var start = window.scrollY;
+      var end = target.getBoundingClientRect().top + start - (header ? header.offsetHeight : 0) - 8;
+      end = Math.max(0, Math.min(end, document.documentElement.scrollHeight - window.innerHeight));
+      var dist = end - start;
+      var dur = reduce ? 250 : Math.min(1100, Math.max(550, Math.abs(dist) * 0.35));
+      var t0 = null;
+      if (running) cancelAnimationFrame(running);
+      function frame(now) {
+        if (t0 === null) t0 = now;
+        var p = Math.min(1, (now - t0) / dur);
+        window.scrollTo(0, start + dist * ease(p));
+        if (p < 1) { running = requestAnimationFrame(frame); }
+        else {
+          running = null;
+          if (!reduce && target.tagName === 'SECTION') {
+            target.classList.remove('arrive'); void target.offsetWidth; target.classList.add('arrive');
+          }
+        }
+      }
+      running = requestAnimationFrame(frame);
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href').slice(1);
+        var target = id ? document.getElementById(id) : null;
+        if (!target) return;
+        e.preventDefault();
+        glide(target);
+        try { history.replaceState(null, '', '#' + id); } catch (err) {}
+      });
+    });
+    // Underline the menu item of the section on screen.
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav a:not(.btn)'));
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      links.forEach(function (l) { var s = document.querySelector(l.getAttribute('href')); if (s) io.observe(s); });
+    }
+  })();
   (function () {
     var btn = document.getElementById('copy-mail');
     var mail = document.getElementById('mail');
