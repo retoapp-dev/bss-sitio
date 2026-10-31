@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>:root{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23111%27/%3E%3Ctext x=%2732%27 y=%2741%27 font-family=%27Arial%27 font-weight=%27800%27 font-size=%2722%27 fill=%27%23fff%27 text-anchor=%27middle%27%3EBSS%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cg transform='translate(8 8) scale(1.2)' fill='%23fff'%3E%3Crect x='2' y='2' width='17' height='17' rx='3.6'/%3E%3Crect x='2' y='21' width='17' height='17' rx='3.6'/%3E%3Ccircle cx='29.5' cy='29.5' r='8.5'/%3E%3Cpath d='M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z' fill='%23111'/%3E%3C/g%3E%3C/svg%3E">
 <title>BSS Business Solutions Software</title>
 <meta name="description" content="BSS: ventas, gastos, stock, clientes y proveedores en un solo lugar, para cualquier negocio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +66,8 @@ p { margin: 0; }
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding-block: 12px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.mark { width: 38px; height: 38px; border-radius: 10px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font: 800 13px/1 var(--font-display); letter-spacing: -0.04em; }
+.mark { width: 38px; height: 38px; color: var(--ink); display: block; }
+.mark svg { display: block; width: 100%; height: 100%; }
 .brand strong { display: block; font: 800 18px/1.1 var(--font-display); }
 .brand small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
 .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
@@ -102,7 +103,7 @@ main section[id] { scroll-margin-top: 76px; }
 .mock-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
 .mock-body { display: flex; }
 .mock-side { width: 110px; flex: none; background: #0a0a0a; padding: 16px 12px; display: grid; align-content: start; gap: 10px; }
-.mock-side .m { width: 28px; height: 28px; border-radius: 8px; background: #fff; color: #111; display: grid; place-items: center; font: 800 10px var(--font-display); }
+.mock-side .m { width: 28px; height: 28px; display: block; }
 .mock-side i { display: block; height: 8px; border-radius: 4px; background: rgba(255,255,255,.3); }
 .mock-side i:first-of-type { background: rgba(255,255,255,.8); }
 .mock-main { flex: 1; min-width: 0; padding: 16px; display: grid; gap: 14px; }
@@ -195,7 +196,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#inicio" aria-label="BSS, ir al inicio"><span class="mark" aria-hidden="true">BSS</span><span><strong>BSS</strong><small>Business Solutions Software</small></span></a>
+    <a class="brand" href="#inicio" aria-label="BSS, ir al inicio"><span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="currentColor"><rect x="2" y="2" width="17" height="17" rx="3.6"/><rect x="2" y="21" width="17" height="17" rx="3.6"/><circle cx="29.5" cy="29.5" r="8.5"/><path d="M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z" fill="var(--bg)"/></svg></span><span><strong>BSS</strong><small>Business Solutions Software</small></span></a>
     <nav class="nav" aria-label="Secciones">
       <a href="#para-quien">Para quién</a>
       <a href="#que-hace">Qué hace</a>
@@ -226,7 +227,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     <figure class="mock" aria-label="Vista de ejemplo del resumen de BSS">
       <div class="mock-dots" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="mock-body">
-        <div class="mock-side" aria-hidden="true"><span class="m">BSS</span><i style="width:80%"></i><i style="width:64%"></i><i style="width:72%"></i><i style="width:56%"></i><i style="width:68%"></i></div>
+        <div class="mock-side" aria-hidden="true"><span class="m"><svg viewBox="0 0 40 40" fill="#fff" width="28" height="28"><rect x="2" y="2" width="17" height="17" rx="3.6"/><rect x="2" y="21" width="17" height="17" rx="3.6"/><circle cx="29.5" cy="29.5" r="8.5"/><path d="M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z" fill="#0a0a0a"/></svg></span><i style="width:80%"></i><i style="width:64%"></i><i style="width:72%"></i><i style="width:56%"></i><i style="width:68%"></i></div>
         <div class="mock-main">
           <div class="kpis">
             <div class="kpi"><small>Ventas</small><b>$ 183.235</b><em>+4 % vs mes anterior</em></div>
