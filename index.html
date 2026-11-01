@@ -6,7 +6,18 @@
 <style>:root{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cg transform='translate(8 8) scale(1.2)' fill='%23fff'%3E%3Crect x='2' y='2' width='17' height='17' rx='3.6'/%3E%3Crect x='2' y='21' width='17' height='17' rx='3.6'/%3E%3Ccircle cx='29.5' cy='29.5' r='8.5'/%3E%3Cpath d='M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z' fill='%23111'/%3E%3C/g%3E%3C/svg%3E">
 <title>BSS | Tu negocio, en blanco y negro</title>
-<meta name="description" content="BSS: ventas, gastos, stock, clientes y proveedores en un solo lugar, para cualquier negocio.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BSS · Business Solutions Software">
+<meta property="og:title" content="BSS | Tu negocio, en blanco y negro">
+<meta property="og:description" content="Ventas, gastos, stock, clientes y proveedores en un solo lugar. Gratis, sin instalar nada y para cualquier negocio.">
+<meta property="og:url" content="https://retoapp-dev.github.io/bss-sitio/">
+<meta property="og:image" content="https://retoapp-dev.github.io/bss-sitio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://retoapp-dev.github.io/bss-sitio/og.png">
+<meta name="description" content="Ventas, gastos, stock, clientes y proveedores en un solo lugar. Gratis, sin instalar nada y para cualquier negocio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
@@ -163,6 +174,13 @@ main section[id] { scroll-margin-top: 76px; }
 
 /* Founder */
 .founder { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px; align-items: center; }
+.maker-card { border-radius: 20px; background: var(--invert-bg); color: var(--invert-fg); padding: clamp(24px, 4vw, 36px); display: grid; gap: 24px; }
+.maker-mark { width: 56px; height: 56px; display: block; color: var(--invert-fg); }
+.maker-mark svg { width: 100%; height: 100%; display: block; }
+.maker-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.maker-facts li { display: grid; gap: 3px; padding-top: 14px; border-top: 1px solid color-mix(in srgb, var(--invert-fg) 18%, transparent); }
+.maker-facts strong { font: 700 17px var(--font-display); }
+.maker-facts span { font-size: 14px; color: var(--invert-muted); }
 .photo { border-radius: 20px; background: var(--line); min-height: 300px; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--faint); font-size: 14px; }
 .founder-copy { display: grid; gap: 16px; min-width: 0; }
 .story { color: var(--ink); font-size: clamp(18px, 1.8vw, 21px); line-height: 1.55; }
@@ -336,7 +354,14 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 
   <section class="band" aria-labelledby="t-founder">
     <div class="wrap founder">
-      <div class="photo">[TU FOTO: una imagen tuya o de tu lugar de trabajo]</div>
+      <div class="maker-card">
+        <span class="maker-mark"><svg viewBox="0 0 40 40" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="17" height="17" rx="3.6"/><rect x="2" y="21" width="17" height="17" rx="3.6"/><circle cx="29.5" cy="29.5" r="8.5"/><path d="M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z" fill="var(--invert-bg)"/></svg></span>
+        <ul class="maker-facts">
+          <li><strong>Hecha por una persona</strong><span>No una corporación: alguien que entiende lo que es llevar un negocio.</span></li>
+          <li><strong>Respuesta directa</strong><span>Escribes y te responde quien hace BSS, no un robot.</span></li>
+          <li><strong>Crece con tus ideas</strong><span>Lo que nos cuentan los usuarios se convierte en mejoras.</span></li>
+        </ul>
+      </div>
       <div class="founder-copy">
         <p class="eyebrow">Quién hace BSS</p>
         <h2 id="t-founder" class="h2">Hola, soy Simon Schmidt.</h2>
@@ -351,7 +376,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     <div class="wrap faq stack">
       <h2 id="t-faq" class="h2">Preguntas frecuentes</h2>
       <div class="faq-list">
-        <details><summary>¿Cuánto cuesta?<span aria-hidden="true">+</span></summary><p>Crear la cuenta y empezar es gratis. <span class="placeholder" style="display:inline-block;padding:2px 8px">[Definí tus planes y precios, o si será gratis durante un tiempo.]</span></p></details>
+        <details><summary>¿Cuánto cuesta?<span aria-hidden="true">+</span></summary><p>BSS es gratis por ahora. Si en el futuro hay planes pagos, lo sabrás con al menos 30 días de anticipación y nunca se cobra nada sin que lo aceptes.</p></details>
         <details><summary>¿Tengo que instalar algo?<span aria-hidden="true">+</span></summary><p>No. BSS funciona en el navegador del celular, la tablet o la computadora. Entras con tu correo y contraseña desde donde estés.</p></details>
         <details><summary>No sé nada de contabilidad, ¿la puedo usar?<span aria-hidden="true">+</span></summary><p>Sí. Está pensada justamente para eso: anotas ventas y gastos con palabras de todos los días y BSS hace las cuentas por ti. Además puedes probarla con datos de ejemplo antes de cargar los tuyos.</p></details>
         <details><summary>Ya tengo todo en Excel, ¿lo pierdo?<span aria-hidden="true">+</span></summary><p>No. Puedes importar tu inventario desde Excel, Word o Google Sheets, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato.</p></details>
