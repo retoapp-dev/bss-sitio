@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /volante/
+
+Sitemap: https://bssgestion.com.ar/sitemap.xml
