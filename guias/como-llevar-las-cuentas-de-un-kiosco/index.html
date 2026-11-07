@@ -1,0 +1,341 @@
+<!doctype html>
+<!--
+  BSS (Business Solutions Software) · https://bssgestion.com.ar
+  © 2026 Simon Schmidt. Todos los derechos reservados. All rights reserved.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Cg transform='translate(8 8) scale(1.2)' fill='%23fff'%3E%3Crect x='2' y='2' width='17' height='17' rx='3.6'/%3E%3Crect x='2' y='21' width='17' height='17' rx='3.6'/%3E%3Ccircle cx='29.5' cy='29.5' r='8.5'/%3E%3Cpath d='M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z' fill='%23111'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<title>Cómo llevar las cuentas de un kiosco: guía simple paso a paso</title>
+<meta name="description" content="Cómo anotar ventas y gastos, controlar el stock, manejar el fiado y hacer el cierre de caja de un kiosco sin complicarte. Guía práctica con ejemplos.">
+<link rel="canonical" href="https://bssgestion.com.ar/guias/como-llevar-las-cuentas-de-un-kiosco/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cómo llevar las cuentas de un kiosco: guía simple paso a paso">
+<meta property="og:description" content="Cómo anotar ventas y gastos, controlar el stock, manejar el fiado y hacer el cierre de caja de un kiosco sin complicarte. Guía práctica con ejemplos.">
+<meta property="og:url" content="https://bssgestion.com.ar/guias/como-llevar-las-cuentas-de-un-kiosco/">
+<meta property="og:image" content="https://bssgestion.com.ar/og.png?v=2">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Cómo llevar las cuentas de un kiosco (sin volverte loco)", "description": "Cómo anotar ventas y gastos, controlar el stock, manejar el fiado y hacer el cierre de caja de un kiosco sin complicarte. Guía práctica con ejemplos.", "inLanguage": "es-AR", "datePublished": "2026-11-07", "dateModified": "2026-11-07", "mainEntityOfPage": "https://bssgestion.com.ar/guias/como-llevar-las-cuentas-de-un-kiosco/", "publisher": {"@type": "Organization", "name": "BSS · Business Solutions Software", "url": "https://bssgestion.com.ar/"}}</script>
+<style>
+/* Layout: black-and-white editorial bands, ledger-style lists; the product mock is the one bold moment. */
+:root {
+  --bg: #f4f4f3;
+  --surface: #ffffff;
+  --soft: #fafaf9;
+  --ink: #111111;
+  --muted: #4a4a49;
+  --faint: #5d5d5c;
+  --line: #dcdcda;
+  --invert-bg: #0d0d0d;
+  --invert-fg: #f3f3f2;
+  --invert-muted: #bcbcba;
+  --bar: #111111;
+  --alert: #b42318;
+  --font-display: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
+    --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
+  --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: clamp(64px, 9vw, 104px); }
+.band.surface { background: var(--surface); border-block: 1px solid var(--line); }
+.band.invert { background: var(--invert-bg); color: var(--invert-fg); }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+.invert .eyebrow { color: var(--invert-muted); }
+.h2 { font-weight: 800; font-size: clamp(30px, 4.2vw, 50px); line-height: 1.06; letter-spacing: -0.035em; }
+.lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 62ch; }
+.intro { display: grid; gap: 14px; max-width: 780px; }
+.stack { display: grid; gap: clamp(28px, 4vw, 40px); }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark { width: 38px; height: 38px; color: var(--ink); display: block; }
+.mark svg { display: block; width: 100%; height: 100%; }
+.brand strong { display: block; font: 800 18px/1.1 var(--font-display); }
+.brand small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
+.nav a { text-decoration: none; font-size: 14px; padding: 10px 12px; border-radius: 8px; }
+.nav a { position: relative; transition: background .25s ease, color .25s ease; }
+.nav a:not(.btn)::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 5px; height: 2px; border-radius: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.nav a:not(.btn):hover::after, .nav a.active::after { transform: scaleX(1); }
+.nav a:not(.btn):hover { background: var(--line); }
+main section[id] { scroll-margin-top: 76px; }
+@keyframes arrive { from { opacity: .35; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.arrive .intro, .arrive > .wrap > h2, .arrive .founder-copy { animation: arrive .6s cubic-bezier(.2,.7,.2,1) both; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 12px; font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--ink); transition: transform .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn.solid { background: var(--ink); color: var(--bg); }
+.btn.ghost { background: var(--surface); border-color: var(--line); }
+.nav .btn { min-height: 40px; padding: 0 16px; font-size: 14px; margin-left: 6px; color: var(--bg); }
+.nav .btn:hover { background: var(--ink); }
+.btn svg { width: 18px; height: 18px; }
+@media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(36px, 6vw, 64px); align-items: center; padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 88px); }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero h1 { font-weight: 800; font-size: clamp(40px, 4.8vw, 64px); line-height: 0.98; letter-spacing: -0.045em; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+.ticks li { display: flex; align-items: center; gap: 8px; }
+.ticks svg { width: 16px; height: 16px; flex: none; }
+
+/* Product mock */
+.mock { margin: 0; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: 0 30px 70px rgba(0,0,0,.12); overflow: hidden; min-width: 0; }
+.mock-dots { display: flex; gap: 6px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.mock-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.mock-body { display: flex; }
+.mock-side { width: 110px; flex: none; background: #0a0a0a; padding: 16px 12px; display: grid; align-content: start; gap: 10px; }
+.mock-side .m { width: 28px; height: 28px; display: block; }
+.mock-side i { display: block; height: 8px; border-radius: 4px; background: rgba(255,255,255,.3); }
+.mock-side i:first-of-type { background: rgba(255,255,255,.8); }
+.mock-main { flex: 1; min-width: 0; padding: 16px; display: grid; gap: 14px; }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.kpi { border: 1px solid var(--line); border-radius: 10px; padding: 10px; min-width: 0; }
+.kpi small { display: block; font-size: 10px; color: var(--faint); }
+.kpi b { display: block; font: 800 clamp(13px, 1.6vw, 18px) var(--font-display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kpi em { display: block; font-style: normal; font-size: 10px; color: var(--faint); }
+.kpi em.alert { color: var(--alert); }
+.bars { display: flex; align-items: flex-end; gap: 6px; height: 118px; border-bottom: 1px solid var(--line); }
+.bars span { flex: 1; background: var(--bar); border-radius: 4px 4px 0 0; transform-origin: bottom; animation: grow .9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes grow { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .bars span { animation: none; } }
+.rows { display: grid; font-size: 12px; }
+.rows div { display: flex; justify-content: space-between; gap: 8px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+.rows div:last-child { border-bottom: 0; }
+.rows b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mock figcaption { padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--faint); }
+
+/* Who it's for */
+.who { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.who li { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; align-content: start; gap: 8px; background: var(--soft); }
+.who svg { width: 26px; height: 26px; }
+.who strong { font: 700 17px var(--font-display); }
+.who span { font-size: 14px; color: var(--muted); }
+.promise { border-radius: var(--radius); background: var(--invert-bg); color: var(--invert-fg); padding: clamp(22px, 3vw, 30px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px; }
+.promise strong { display: block; font: 700 18px var(--font-display); margin-bottom: 6px; }
+.promise span { font-size: 15px; color: var(--invert-muted); }
+
+/* What it does */
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.pillar { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: 28px; display: grid; align-content: start; gap: 14px; }
+.pillar h3 { font-weight: 800; font-size: 28px; letter-spacing: -0.02em; }
+.pillar > p { color: var(--muted); }
+.pillar ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 15px; }
+
+/* Steps (a real sequence) */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 2px solid var(--invert-fg); padding-top: 18px; display: grid; gap: 8px; }
+.steps li::before { content: "Paso " counter(s); font-size: 13px; font-weight: 600; color: var(--invert-muted); }
+.steps strong { font: 700 21px var(--font-display); }
+.steps span { color: var(--invert-muted); }
+
+/* For everyone */
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(32px, 5vw, 56px); align-items: start; }
+.access { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.access li { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 20px; display: grid; gap: 6px; }
+.access strong { font: 700 16px var(--font-display); }
+.access span { font-size: 14px; color: var(--muted); }
+
+/* Trust */
+.trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.trust div { display: grid; align-content: start; gap: 10px; padding: 24px; border-radius: var(--radius); background: var(--bg); }
+.trust svg { width: 26px; height: 26px; }
+.trust strong { font: 700 17px var(--font-display); }
+.trust span { font-size: 14px; color: var(--muted); }
+
+/* Founder */
+.founder { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px; align-items: center; }
+.maker-card { border-radius: 20px; background: var(--invert-bg); color: var(--invert-fg); padding: clamp(24px, 4vw, 36px); display: grid; gap: 24px; }
+.maker-mark { width: 56px; height: 56px; display: block; color: var(--invert-fg); }
+.maker-mark svg { width: 100%; height: 100%; display: block; }
+.maker-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.maker-facts li { display: grid; gap: 3px; padding-top: 14px; border-top: 1px solid color-mix(in srgb, var(--invert-fg) 18%, transparent); }
+.maker-facts strong { font: 700 17px var(--font-display); }
+.maker-facts span { font-size: 14px; color: var(--invert-muted); }
+.photo { border-radius: 20px; background: var(--line); min-height: 300px; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--faint); font-size: 14px; }
+.founder-copy { display: grid; gap: 16px; min-width: 0; }
+.story { color: var(--ink); font-size: clamp(18px, 1.8vw, 21px); line-height: 1.55; }
+.story strong { font-weight: 700; }
+.placeholder { border: 1px dashed var(--faint); border-radius: 10px; padding: 12px 14px; color: var(--faint); font-size: 15px; }
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.contact code { font-family: var(--font-body); font-size: 16px; font-weight: 600; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); user-select: all; word-break: break-all; }
+.copy { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); font: 600 14px var(--font-body); cursor: pointer; }
+
+/* FAQ */
+.faq { max-width: 860px; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-weight: 600; font-size: 17px; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary span { font-size: 26px; line-height: 1; transition: transform .2s; }
+.faq details[open] summary span { transform: rotate(45deg); }
+.faq details p { padding-bottom: 20px; color: var(--muted); max-width: 70ch; }
+
+/* Closing */
+.close { padding-block: 24px; }
+.close-card { border-radius: 24px; background: var(--invert-bg); color: var(--invert-fg); padding: clamp(32px, 6vw, 72px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
+.close-card h2 { font-weight: 800; font-size: clamp(30px, 4.4vw, 54px); line-height: 1.04; letter-spacing: -0.035em; max-width: 16ch; }
+.close-card p { color: var(--invert-muted); margin-top: 12px; }
+.close-card .btn { background: var(--invert-fg); color: var(--invert-bg); border-color: var(--invert-fg); min-height: 52px; font-size: 17px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 32px 48px; font-size: 14px; color: var(--muted); }
+footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+</style>
+<style>
+.article { max-width: 720px; margin: 0 auto; padding-block: 56px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.article h1 { font-family: Manrope, 'DM Sans', system-ui, sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; letter-spacing: -.03em; margin: 10px 0 16px; text-wrap: balance; }
+.article h2 { font-family: Manrope, 'DM Sans', system-ui, sans-serif; font-weight: 800; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; margin: 44px 0 10px; text-wrap: balance; }
+.article p, .article li { font-size: 17px; line-height: 1.7; color: var(--ink); }
+.article p { margin: 0 0 16px; }
+.article ul, .article ol { margin: 0 0 18px; padding-left: 22px; }
+.article li { margin-bottom: 8px; }
+.article .meta { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+.article .tip { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 18px 20px; margin: 22px 0; }
+.article .tip strong { display: block; margin-bottom: 4px; }
+.article table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0 20px; }
+.article th, .article td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.article th { font-size: 13px; color: var(--muted); font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+.article .cta { margin-top: 44px; border-radius: 22px; background: var(--invert-bg); color: var(--invert-fg); padding: 28px; display: grid; gap: 12px; }
+.article .cta h2 { margin: 0; color: var(--invert-fg); }
+.article .cta p { color: var(--invert-muted); margin: 0; }
+.article .cta .btn { justify-self: start; background: var(--invert-fg); color: var(--invert-bg); border-color: var(--invert-fg); }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="BSS, ir al inicio"><span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="currentColor"><rect x="2" y="2" width="17" height="17" rx="3.6"/><rect x="2" y="21" width="17" height="17" rx="3.6"/><circle cx="29.5" cy="29.5" r="8.5"/><path d="M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z" fill="var(--bg)"/></svg></span><span><strong>BSS</strong><small>Business Solutions Software</small></span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="/#para-quien">Para quién</a>
+      <a href="/#que-hace">Qué hace</a>
+      <a href="/#confianza">Confianza</a>
+      <a href="/#preguntas">Preguntas</a>
+      <a href="https://app.bssgestion.com.ar/entrar">Entrar</a>
+      <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Probar gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<article class="article">
+  <p class="eyebrow">Guía · Kioscos y almacenes</p>
+  <h1>Cómo llevar las cuentas de un kiosco (sin volverte loco)</h1>
+  <p class="meta">Lectura de 6 minutos · Actualizada en noviembre de 2026</p>
+
+  <p>En un kiosco pasa de todo en un día: decenas de ventas chicas, el proveedor de golosinas, la recarga de la SUBE, el vecino que paga a fin de mes. Si las cuentas se llevan "de memoria" o en un cuaderno, a fin de mes es difícil responder la pregunta más importante: <strong>¿cuánto gané?</strong></p>
+  <p>Esta guía te muestra una forma simple de ordenar las cuentas de un kiosco, paso a paso, para que sepas cuánta plata entra, cuánta sale y dónde se te escapa.</p>
+
+  <h2>1. Separá la plata del kiosco de la tuya</h2>
+  <p>Es el error más común y el que más confunde. Si de la caja sacás para el súper o para cargar nafta, después los números nunca cierran.</p>
+  <ul>
+    <li>Definí un <strong>sueldo o retiro fijo</strong> para vos (por semana o por mes) y anotalo como un gasto más.</li>
+    <li>Si un día sacás plata de la caja para algo personal, anotalo igual: "retiro personal".</li>
+    <li>Si podés, usá una cuenta o billetera virtual solo para el negocio.</li>
+  </ul>
+
+  <h2>2. Anotá cada venta (o al menos el total del día)</h2>
+  <p>En un kiosco las ventas son muchas y de poco monto, así que lo ideal es una herramienta que te deje registrarlas rápido. Si no, como mínimo anotá <strong>el total vendido cada día, separado por forma de pago</strong>:</p>
+  <div class="table-scroll"><table>
+    <tr><th>Fecha</th><th>Efectivo</th><th>Débito / crédito</th><th>Transferencia / QR</th><th>Total</th></tr>
+    <tr><td>Lunes</td><td>$ 85.000</td><td>$ 32.000</td><td>$ 41.000</td><td>$ 158.000</td></tr>
+    <tr><td>Martes</td><td>$ 92.500</td><td>$ 28.000</td><td>$ 37.500</td><td>$ 158.000</td></tr>
+  </table></div>
+  <p>Separar por forma de pago te sirve para controlar que lo que dice el posnet o la billetera virtual coincida con lo que vendiste.</p>
+
+  <h2>3. Registrá todos los gastos, incluso los chicos</h2>
+  <p>Los gastos grandes (alquiler, luz, proveedores) no se olvidan. Los que se escapan son los chicos: bolsas, artículos de limpieza, el flete, las comisiones del posnet. Sumados, pueden ser mucha plata.</p>
+  <p>Agrupalos en pocas categorías para entenderlos de un vistazo:</p>
+  <ul>
+    <li><strong>Mercadería:</strong> todo lo que comprás para revender.</li>
+    <li><strong>Gastos fijos:</strong> alquiler, luz, internet, impuestos.</li>
+    <li><strong>Gastos variables:</strong> bolsas, limpieza, fletes, comisiones.</li>
+    <li><strong>Sueldos y retiros:</strong> lo que te pagás a vos y a quien te ayuda.</li>
+  </ul>
+
+  <h2>4. Controlá el stock de lo que más se vende</h2>
+  <p>No hace falta contar cada caramelo todos los días. Concentrate en los productos que más vendés y en los más caros (cigarrillos, bebidas, recargas, golosinas de marca). Para cada uno:</p>
+  <ul>
+    <li>Anotá cuántos tenés y un <strong>mínimo</strong> por debajo del cual hay que reponer.</li>
+    <li>Cuando entra mercadería, sumala. Cuando vendés, restala.</li>
+    <li>Una vez por semana, contá lo que hay en el estante y compará. Si falta mercadería que no se vendió, es una señal para revisar.</li>
+  </ul>
+
+  <h2>5. Ordená el fiado</h2>
+  <p>El "anotámelo y te pago el viernes" es parte del barrio, pero sin control se convierte en plata que no vuelve. Para cada cliente que te debe, anotá:</p>
+  <ul>
+    <li>Nombre y teléfono.</li>
+    <li>Qué se llevó, cuánto es y la fecha.</li>
+    <li>Cuándo te dijo que paga.</li>
+  </ul>
+  <p>Ponete un límite de fiado por persona y revisá la lista una vez por semana.</p>
+
+  <h2>6. Hacé el cierre de caja todos los días</h2>
+  <p>El cierre de caja es comparar <strong>la plata que tendría que haber</strong> con <strong>la que hay de verdad</strong>. Se hace en 5 minutos al final del día:</p>
+  <ol>
+    <li>Arrancá con el efectivo con el que abriste (el "cambio").</li>
+    <li>Sumale las ventas en efectivo del día.</li>
+    <li>Restale lo que pagaste en efectivo (proveedores, retiros).</li>
+    <li>Contá lo que hay en la caja y compará.</li>
+  </ol>
+  <div class="tip"><strong>Si no coincide</strong>Una diferencia chica puede ser un vuelto mal dado. Si se repite o es grande, revisá si quedó alguna venta o gasto sin anotar.</div>
+
+  <h2>7. Una vez por mes, mirá los números grandes</h2>
+  <p>Con todo lo anterior anotado, a fin de mes respondés en minutos:</p>
+  <ul>
+    <li><strong>¿Cuánto vendí?</strong> La suma de todas las ventas.</li>
+    <li><strong>¿Cuánto gasté?</strong> La suma de todos los gastos.</li>
+    <li><strong>¿Cuánto gané?</strong> Ventas menos gastos.</li>
+    <li><strong>¿Qué productos me dejan más ganancia?</strong> No siempre son los que más se venden.</li>
+    <li><strong>¿En qué se me va la plata?</strong> La categoría de gasto más grande.</li>
+  </ul>
+  <p>Con esas respuestas podés decidir mejor: subir un precio, cambiar de proveedor o dejar de traer algo que casi no se vende.</p>
+
+  <h2>¿Cuaderno, Excel o app?</h2>
+  <p>Todo esto se puede hacer en un cuaderno, pero lleva tiempo y es fácil equivocarse con las cuentas. Una planilla de Excel ayuda, aunque desde el celular es incómoda. Una app pensada para negocios hace las sumas sola: registrás la venta, el stock se descuenta, los gastos se ordenan por categoría y el resumen del mes aparece sin hacer cuentas.</p>
+
+  <section class="cta" aria-labelledby="cta-title">
+    <h2 id="cta-title">Probá BSS gratis</h2>
+    <p>Ventas rápidas desde el celular, stock que se descuenta solo, fiado ordenado, cierre de caja y reportes claros. Sin instalar nada.</p>
+    <a class="btn" href="https://app.bssgestion.com.ar/registro">Crear mi cuenta gratis</a>
+  </section>
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 BSS · Business Solutions Software · Hecho por Simon Schmidt</span>
+    <nav aria-label="Enlaces"><a href="/#preguntas">Preguntas</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
+  </div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "34c6cefe4a0145269f7fbffafb29298b"}'></script>
+</body>
+</html>
