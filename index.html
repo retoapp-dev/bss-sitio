@@ -468,7 +468,15 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
           links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
         });
       }, { rootMargin: '-45% 0px -50% 0px' });
-      links.forEach(function (l) { var s = document.querySelector(l.getAttribute('href')); if (s) io.observe(s); });
+      // Only the links that point to a section of this page: handing an
+      // address like https://app… to querySelector throws, and the error
+      // would stop every script below this one.
+      links.forEach(function (l) {
+        var href = l.getAttribute('href') || '';
+        if (href.charAt(0) !== '#' || href.length < 2) return;
+        var s = document.getElementById(href.slice(1));
+        if (s) io.observe(s);
+      });
     }
   })();
   (function () {
