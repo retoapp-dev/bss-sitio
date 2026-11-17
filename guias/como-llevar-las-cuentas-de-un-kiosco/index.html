@@ -101,6 +101,9 @@ main section[id] { scroll-margin-top: 76px; }
 .nav .btn:hover { background: var(--ink); }
 .btn svg { width: 18px; height: 18px; }
 @media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+/* On most phones the brand line and the button did not fit side by side, so the
+   sticky header broke into two rows and took twice the screen. */
+@media (max-width: 520px) { .top .wrap { flex-wrap: nowrap; } .brand small { display: none; } }
 
 /* Hero */
 .hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(36px, 6vw, 64px); align-items: center; padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 88px); }
@@ -242,6 +245,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
       <a href="/#que-hace">Qué hace</a>
       <a href="/#confianza">Confianza</a>
       <a href="/#preguntas">Preguntas</a>
+      <a href="/herramientas/calculadora-de-precios/">Calculadora</a>
       <a href="https://app.bssgestion.com.ar/entrar">Entrar</a>
       <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Probar gratis</a>
     </nav>
@@ -321,6 +325,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     <li><strong>¿En qué se me va el dinero?</strong> La categoría de gasto más grande.</li>
   </ul>
   <p>Con esas respuestas puedes decidir mejor: subir un precio, cambiar de proveedor o dejar de traer algo que casi no se vende.</p>
+  <div class="tip"><strong>¿Vas a subir un precio?</strong>Usa la <a href="/herramientas/calculadora-de-precios/">calculadora de precio de venta</a>: le pones el costo, la ganancia que quieres y la comisión de Mercado Pago o la tarjeta, y te dice a cuánto venderlo para que no se coma tu ganancia.</div>
 
   <h2>¿Cuaderno, Excel o app?</h2>
   <p>Todo esto se puede hacer en un cuaderno, pero lleva tiempo y es fácil equivocarse con las cuentas. Una planilla de Excel ayuda, aunque desde el celular es incómoda. Una app pensada para negocios hace las sumas sola: registras la venta, el stock se descuenta, los gastos se ordenan por categoría y el resumen del mes aparece sin hacer cuentas.</p>
@@ -336,7 +341,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 <footer>
   <div class="wrap">
     <span>© 2026 BSS · Business Solutions Software · Hecho por Simon Schmidt</span>
-    <nav aria-label="Enlaces"><a href="/#preguntas">Preguntas</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="/#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
+    <nav aria-label="Enlaces"><a href="/#preguntas">Preguntas</a><a href="/herramientas/calculadora-de-precios/">Calculadora de precios</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="/#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "34c6cefe4a0145269f7fbffafb29298b"}'></script>

@@ -1,0 +1,580 @@
+<!doctype html>
+<!--
+  BSS (Business Solutions Software) · https://bssgestion.com.ar
+  © 2026 Simon Schmidt. Todos los derechos reservados. All rights reserved.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<title>Calculadora de precio de venta y margen de ganancia, gratis</title>
+<meta name="description" content="¿A cuánto vender un producto? Calcula el precio desde el costo con tu ganancia, la comisión de Mercado Pago o la tarjeta y el IVA, y mira cuánto te queda de verdad. Gratis y sin registro.">
+<link rel="canonical" href="https://bssgestion.com.ar/herramientas/calculadora-de-precios/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="¿A cuánto lo vendo? Calculadora de precio de venta gratis">
+<meta property="og:description" content="Con tu ganancia, la comisión de Mercado Pago o la tarjeta y el IVA. Mira cuánto te queda de verdad.">
+<meta property="og:url" content="https://bssgestion.com.ar/herramientas/calculadora-de-precios/">
+<meta property="og:image" content="https://bssgestion.com.ar/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de precio de venta", "url": "https://bssgestion.com.ar/herramientas/calculadora-de-precios/", "description": "¿A cuánto vender un producto? Calcula el precio desde el costo con tu ganancia, la comisión de Mercado Pago o la tarjeta y el IVA, y mira cuánto te queda de verdad. Gratis y sin registro.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cualquiera (navegador)", "inLanguage": "es", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ARS"}, "publisher": {"@type": "Organization", "name": "BSS · Business Solutions Software", "url": "https://bssgestion.com.ar/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuál es la diferencia entre margen y recargo?", "acceptedAnswer": {"@type": "Answer", "text": "El recargo (o markup) es el porcentaje que le sumas al costo. El margen es el porcentaje de ganancia sobre el precio de venta. Un producto que cuesta $1.000 y se vende a $1.300 tiene un recargo de 30 % y un margen de 23,1 %: es la misma ganancia, medida contra dos números distintos."}}, {"@type": "Question", "name": "¿Cómo calculo el precio de venta a partir del costo?", "acceptedAnswer": {"@type": "Answer", "text": "Si quieres sumarle un porcentaje al costo: precio = costo × (1 + porcentaje). Si quieres ganar un porcentaje de lo que cobras: precio = costo ÷ (1 − porcentaje). Si además pagas una comisión al cobrar, divide el resultado por (1 − comisión)."}}, {"@type": "Question", "name": "¿Cómo incluyo la comisión de Mercado Pago o de la tarjeta?", "acceptedAnswer": {"@type": "Answer", "text": "La comisión se cobra sobre el precio total, así que hay que sumarla dividiendo: precio = (costo + ganancia) ÷ (1 − comisión). Ponla en el campo «Comisión al cobrar» de la calculadora y el precio ya sale ajustado para que tu ganancia no cambie."}}, {"@type": "Question", "name": "¿La calculadora guarda mis datos?", "acceptedAnswer": {"@type": "Answer", "text": "No se envía nada a ningún lado: todas las cuentas se hacen en tu celular o computadora. Solo recuerda, en tu propio navegador, la comisión, el IVA y el redondeo que usaste la última vez."}}, {"@type": "Question", "name": "¿Es gratis?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, y sin registrarte. La hizo BSS, un sistema gratuito para llevar las cuentas de un negocio: ventas, stock, clientes y la ganancia de cada producto, desde el celular."}}]}</script>
+<style>
+/* Base del sitio: los mismos tokens, encabezado y botones que el resto de bssgestion.com.ar. */
+:root {
+  --bg: #f4f4f3;
+  --surface: #ffffff;
+  --soft: #fafaf9;
+  --ink: #111111;
+  --muted: #4a4a49;
+  --faint: #5d5d5c;
+  --line: #dcdcda;
+  --invert-bg: #0d0d0d;
+  --invert-fg: #f3f3f2;
+  --invert-muted: #bcbcba;
+  --bar: #111111;
+  --alert: #b42318;
+  --font-display: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
+    --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
+  --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: clamp(64px, 9vw, 104px); }
+.band.surface { background: var(--surface); border-block: 1px solid var(--line); }
+.band.invert { background: var(--invert-bg); color: var(--invert-fg); }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+.invert .eyebrow { color: var(--invert-muted); }
+.h2 { font-weight: 800; font-size: clamp(30px, 4.2vw, 50px); line-height: 1.06; letter-spacing: -0.035em; }
+.lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 62ch; }
+.intro { display: grid; gap: 14px; max-width: 780px; }
+.stack { display: grid; gap: clamp(28px, 4vw, 40px); }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark { width: 38px; height: 38px; color: var(--ink); display: block; }
+.mark svg { display: block; width: 100%; height: 100%; }
+.brand strong { display: block; font: 800 18px/1.1 var(--font-display); }
+.brand small { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
+.nav a { text-decoration: none; font-size: 14px; padding: 10px 12px; border-radius: 8px; }
+.nav a { position: relative; transition: background .25s ease, color .25s ease; }
+.nav a:not(.btn)::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 5px; height: 2px; border-radius: 2px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.nav a:not(.btn):hover::after, .nav a.active::after { transform: scaleX(1); }
+.nav a:not(.btn):hover { background: var(--line); }
+main section[id] { scroll-margin-top: 76px; }
+@keyframes arrive { from { opacity: .35; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.arrive .intro, .arrive > .wrap > h2, .arrive .founder-copy { animation: arrive .6s cubic-bezier(.2,.7,.2,1) both; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 12px; font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--ink); transition: transform .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn.solid { background: var(--ink); color: var(--bg); }
+.btn.ghost { background: var(--surface); border-color: var(--line); }
+.nav .btn { min-height: 40px; padding: 0 16px; font-size: 14px; margin-left: 6px; color: var(--bg); }
+.nav .btn:hover { background: var(--ink); }
+.btn svg { width: 18px; height: 18px; }
+@media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+/* On most phones the brand line and the button did not fit side by side, so the
+   sticky header broke into two rows and took twice the screen. */
+@media (max-width: 520px) { .top .wrap { flex-wrap: nowrap; } .brand small { display: none; } }
+
+/* FAQ */
+.faq { max-width: 860px; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-weight: 600; font-size: 17px; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary span { font-size: 26px; line-height: 1; transition: transform .2s; }
+.faq details[open] summary span { transform: rotate(45deg); }
+.faq details p { padding-bottom: 20px; color: var(--muted); max-width: 70ch; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 32px 48px; font-size: 14px; color: var(--muted); }
+footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+</style>
+<style>
+.article { max-width: 720px; margin: 0 auto; padding-block: 56px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.article h1 { font-family: Manrope, 'DM Sans', system-ui, sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; letter-spacing: -.03em; margin: 10px 0 16px; text-wrap: balance; }
+.article h2 { font-family: Manrope, 'DM Sans', system-ui, sans-serif; font-weight: 800; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; margin: 44px 0 10px; text-wrap: balance; }
+.article p, .article li { font-size: 17px; line-height: 1.7; color: var(--ink); }
+.article p { margin: 0 0 16px; }
+.article ul, .article ol { margin: 0 0 18px; padding-left: 22px; }
+.article li { margin-bottom: 8px; }
+.article .meta { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+.article .tip { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 18px 20px; margin: 22px 0; }
+.article .tip strong { display: block; margin-bottom: 4px; }
+.article table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 8px 0 20px; }
+.article th, .article td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.article th { font-size: 13px; color: var(--muted); font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+.article .cta { margin-top: 44px; border-radius: 22px; background: var(--invert-bg); color: var(--invert-fg); padding: 28px; display: grid; gap: 12px; }
+.article .cta h2 { margin: 0; color: var(--invert-fg); }
+.article .cta p { color: var(--invert-muted); margin: 0; }
+.article .cta .btn { justify-self: start; background: var(--invert-fg); color: var(--invert-bg); border-color: var(--invert-fg); }
+</style>
+<style>
+[hidden] { display: none !important; }
+:root {
+  /* The result card is the page's one dark moment, so its colors are set against --invert-bg. */
+  --seg-cost: color-mix(in srgb, var(--invert-fg) 34%, transparent);
+  --seg-fee: #ff8a7a;
+  --seg-tax: color-mix(in srgb, var(--invert-fg) 62%, transparent);
+  --seg-gain: var(--invert-fg);
+  --field-bg: var(--bg);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --seg-fee: #c4321f; --field-bg: #0f0f0f; } }
+:root[data-theme="dark"] { --seg-fee: #c4321f; --field-bg: #0f0f0f; }
+
+body { margin: 0; }
+.tool-hero { display: grid; gap: 14px; max-width: 760px; padding-block: clamp(40px, 7vw, 76px) clamp(22px, 3vw, 32px); }
+.tool-hero h1 { font-weight: 800; font-size: clamp(42px, 6.4vw, 72px); line-height: .96; letter-spacing: -.045em; }
+
+.calc { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 16px; align-items: start; padding-bottom: clamp(40px, 6vw, 72px); }
+.calc-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(20px, 3vw, 30px); min-width: 0; }
+.calc-form { display: grid; gap: 22px; }
+
+.field { display: grid; gap: 8px; min-width: 0; border: 0; padding: 0; margin: 0; }
+.field > label, .field legend { font-weight: 600; font-size: 15px; padding: 0; margin-bottom: 0; }
+.field legend { margin-bottom: 8px; }
+.field small { color: var(--faint); font-size: 13px; line-height: 1.45; }
+.box { display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 58px; padding: 0 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--field-bg); transition: border-color .15s, box-shadow .15s; }
+.box:focus-within { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.box span { font: 700 20px var(--font-display); color: var(--faint); }
+.box input { flex: 1; width: 100%; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 800 24px var(--font-display); letter-spacing: -.01em; font-variant-numeric: tabular-nums; outline: none; padding: 0; }
+.row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 16px; }
+select { width: 100%; min-height: 52px; padding: 0 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--field-bg); color: var(--ink); font: 500 16px var(--font-body); }
+select:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.seg label { position: relative; cursor: pointer; min-width: 0; }
+.seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.seg span { display: grid; gap: 3px; height: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--field-bg); transition: border-color .15s, background .15s, box-shadow .15s; }
+.seg b { font-size: 15px; }
+.seg small { font-size: 12.5px; color: var(--faint); line-height: 1.35; }
+.seg input:checked + span { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: var(--surface); }
+.seg input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.calc-result { position: sticky; top: 84px; display: grid; gap: 16px; background: var(--invert-bg); color: var(--invert-fg); border-color: var(--invert-bg); scroll-margin-top: 84px; }
+.calc-result .eyebrow { color: var(--invert-muted); }
+.price { font: 800 clamp(50px, 7vw, 76px)/1 var(--font-display); letter-spacing: -.045em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.price-sub { margin-top: 6px; color: var(--invert-muted); font-size: 14px; }
+.figures { display: grid; margin: 0; }
+.figures div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 0; border-top: 1px solid color-mix(in srgb, var(--invert-fg) 16%, transparent); }
+.figures dt { color: var(--invert-muted); font-size: 15px; }
+.figures dd { margin: 0; font: 700 17px var(--font-display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.split-bar { display: flex; gap: 2px; height: 14px; border-radius: 999px; overflow: hidden; background: color-mix(in srgb, var(--invert-fg) 10%, transparent); }
+.split-bar i { display: block; height: 100%; transition: width .35s cubic-bezier(.2,.7,.2,1); }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px; font-size: 13.5px; color: var(--invert-muted); }
+.legend li { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.legend b { margin-left: auto; color: var(--invert-fg); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.insight { margin: 0; padding: 14px 16px; border-radius: 14px; background: color-mix(in srgb, var(--invert-fg) 9%, transparent); color: var(--invert-muted); font-size: 15px; line-height: 1.5; }
+.insight strong { color: var(--invert-fg); }
+.insight.err { color: var(--invert-fg); background: color-mix(in srgb, var(--seg-fee) 22%, transparent); }
+.share { display: flex; flex-wrap: wrap; gap: 8px; }
+.share .btn { min-height: 44px; padding: 0 16px; font-size: 14px; background: transparent; color: var(--invert-fg); border-color: color-mix(in srgb, var(--invert-fg) 34%, transparent); cursor: pointer; font-family: var(--font-body); }
+.share .btn:first-child { background: var(--invert-fg); color: var(--invert-bg); border-color: var(--invert-fg); }
+
+.sticky-price { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: var(--invert-bg); color: var(--invert-fg); box-shadow: 0 -10px 28px rgba(0,0,0,.18); }
+.sticky-price span { display: grid; font-size: 12px; color: var(--invert-muted); }
+.sticky-price strong { font: 800 24px/1.1 var(--font-display); color: var(--invert-fg); font-variant-numeric: tabular-nums; }
+.sticky-price a { font-size: 14px; font-weight: 600; text-decoration: none; padding: 10px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--invert-fg) 34%, transparent); }
+
+.article { padding-top: 8px; }
+.article .faq { margin-top: 44px; max-width: none; }
+.article .faq h2 { margin-top: 0; }
+.article .faq details p { font-size: 16px; }
+.article em { font-style: normal; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .92em; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; overflow-wrap: anywhere; }
+.article .more { margin-top: 28px; color: var(--muted); font-size: 15px; }
+
+@media (max-width: 899px) {
+  .calc { grid-template-columns: minmax(0, 1fr); }
+  .calc-result { position: static; }
+}
+@media (max-width: 420px) {
+  .seg { grid-template-columns: minmax(0, 1fr); }
+  .tool-hero h1 { font-size: 44px; }
+}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="BSS, ir al inicio"><span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="currentColor"><rect x="2" y="2" width="17" height="17" rx="3.6"/><rect x="2" y="21" width="17" height="17" rx="3.6"/><circle cx="29.5" cy="29.5" r="8.5"/><path d="M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z" fill="var(--bg)"/></svg></span><span><strong>BSS</strong><small>Business Solutions Software</small></span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="/#que-hace">Qué hace BSS</a>
+      <a href="#como-funciona">Cómo se calcula</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="https://app.bssgestion.com.ar/entrar">Entrar</a>
+      <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Probar gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="tool-hero">
+    <p class="eyebrow">Herramienta gratis · Para comercios</p>
+    <h1>¿A cuánto lo vendo?</h1>
+    <p class="lead">Calcula el precio de venta desde el costo, con la ganancia que quieres, la comisión de Mercado Pago o de la tarjeta y el IVA. Y mira cuánto te queda de verdad.</p>
+  </div>
+
+  <div class="calc">
+    <form class="calc-card calc-form" id="calc" novalidate>
+      <div class="field">
+        <label for="cost">¿Cuánto te cuesta el producto?</label>
+        <div class="box"><span aria-hidden="true">$</span><input id="cost" type="text" inputmode="decimal" autocomplete="off" value="1000" aria-describedby="cost-help"></div>
+        <small id="cost-help">Lo que le pagas al proveedor por una unidad.</small>
+      </div>
+
+      <div class="field">
+        <label for="gain">¿Cuánto quieres ganar?</label>
+        <div class="box"><input id="gain" type="text" inputmode="decimal" autocomplete="off" value="30"><span aria-hidden="true">%</span></div>
+      </div>
+
+      <fieldset class="field">
+        <legend>Ese porcentaje es sobre…</legend>
+        <div class="seg">
+          <label><input type="radio" name="mode" value="markup" checked><span><b>El costo</b><small>Le sumo un % a lo que pagué</small></span></label>
+          <label><input type="radio" name="mode" value="margin"><span><b>El precio</b><small>Quiero ganar ese % de lo que cobro</small></span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="fee">Comisión al cobrar</label>
+        <div class="box"><input id="fee" type="text" inputmode="decimal" autocomplete="off" value="0" aria-describedby="fee-help"><span aria-hidden="true">%</span></div>
+        <small id="fee-help">Lo que te descuenta Mercado Pago, el posnet o la tarjeta. Si cobras en efectivo, déjalo en 0.</small>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label for="iva">IVA</label>
+          <select id="iva">
+            <option value="0">No sumar (monotributo)</option>
+            <option value="21">Sumar 21 %</option>
+            <option value="10.5">Sumar 10,5 %</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="round">Redondear hacia arriba</label>
+          <select id="round">
+            <option value="0">No redondear</option>
+            <option value="10" selected>A $10</option>
+            <option value="50">A $50</option>
+            <option value="100">A $100</option>
+            <option value="500">A $500</option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+    <section class="calc-card calc-result" id="result" aria-labelledby="result-title">
+      <p class="eyebrow" id="result-title">Precio de venta</p>
+      <div aria-live="polite" aria-atomic="true">
+        <p class="price" id="price">—</p>
+        <p class="price-sub" id="price-sub">por unidad</p>
+      </div>
+      <dl class="figures">
+        <div><dt>Te queda de ganancia</dt><dd id="profit">—</dd></div>
+        <div><dt id="margin-label">Margen sobre lo que cobras</dt><dd id="margin">—</dd></div>
+        <div><dt>Recargo sobre el costo</dt><dd id="markup">—</dd></div>
+      </dl>
+      <div class="split-bar" id="bar" aria-hidden="true"></div>
+      <ul class="legend" id="legend" aria-label="De qué está hecho el precio"></ul>
+      <p class="insight" id="insight" aria-live="polite"></p>
+      <div class="share">
+        <a class="btn" id="wa" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+        <button class="btn" id="copy" type="button">Copiar enlace</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<article class="article" id="como-funciona">
+  <h2>Sumarle 30 % no es ganar 30 %</h2>
+  <p>Es la confusión más común al poner precios. Si un producto te cuesta $1.000 y le sumas 30 %, lo vendes a $1.300 y ganas $300. Pero esos $300 son el <strong>23 % de lo que cobraste</strong>, no el 30 %. Parece un detalle, y no lo es: tus gastos del mes se pagan con lo que cobras, así que es ese porcentaje el que tiene que alcanzar.</p>
+  <div class="table-scroll"><table>
+    <tr><th>Le sumas al costo</th><th>Cobras</th><th>Ganas</th><th>De lo que cobras, ganas</th></tr>
+    <tr><td>20 %</td><td>$ 1.200</td><td>$ 200</td><td>16,7 %</td></tr>
+    <tr><td>30 %</td><td>$ 1.300</td><td>$ 300</td><td>23,1 %</td></tr>
+    <tr><td>50 %</td><td>$ 1.500</td><td>$ 500</td><td>33,3 %</td></tr>
+    <tr><td>100 %</td><td>$ 2.000</td><td>$ 1.000</td><td>50 %</td></tr>
+  </table></div>
+  <p>Las dos formas de contar son válidas. Lo importante es saber cuál usas, y la calculadora te deja elegir cualquiera de las dos.</p>
+  <div class="tip">
+    <strong>Las dos cuentas, a mano</strong>
+    Sumando un porcentaje al costo: <em>precio = costo × (1 + porcentaje)</em>. Para ganar un porcentaje de lo que cobras: <em>precio = costo ÷ (1 − porcentaje)</em>. Con un costo de $1.000 y 30 %: $1.300 en el primer caso y $1.429 en el segundo.
+  </div>
+
+  <h2>La comisión sale de tu ganancia</h2>
+  <p>Mercado Pago, el posnet y las tarjetas se quedan con un porcentaje de lo que cobras. Ese porcentaje no sale del costo del producto: <strong>sale de tu ganancia</strong>. Con una comisión de, por ejemplo, 6 %, el producto de $1.000 que vendes a $1.300 te deja $222, no $300. Es un 26 % menos de lo que creías ganar, en cada venta.</p>
+  <p>Para mantener tu ganancia hay que trasladar la comisión al precio: <em>precio = (costo + ganancia) ÷ (1 − comisión)</em>. En el ejemplo, $1.300 ÷ 0,94 = $1.383.</p>
+  <p>La comisión cambia según el medio de cobro, el plazo en que recibes el dinero y tu plan. Fíjate cuál es la tuya en la app de Mercado Pago o en el resumen del posnet, y ponla en la calculadora.</p>
+
+  <h2>¿Tengo que sumar el IVA?</h2>
+  <p>Depende de cómo estés inscripto:</p>
+  <ul>
+    <li><strong>Monotributo:</strong> no sumas IVA. El precio que calculas es el precio final.</li>
+    <li><strong>Responsable inscripto:</strong> el IVA no es tuyo: lo cobras y después lo pagas. Por eso se suma arriba del precio, sin tocar tu ganancia. La tasa general es 21 % y algunos productos llevan 10,5 %.</li>
+  </ul>
+
+  <h2>¿Qué porcentaje de ganancia le pongo?</h2>
+  <p>No hay un número que sirva para todos. Un kiosco vive de vender mucho con poco margen; un local de ropa vende menos y necesita más margen por prenda. Lo que sí sirve como regla: <strong>la ganancia de todo el mes tiene que cubrir tus gastos fijos</strong> (alquiler, sueldos, luz, impuestos) y dejarte algo. Si no sabes cuánto suman tus gastos fijos, ese es el primer número que te conviene averiguar.</p>
+
+  <section class="faq" id="preguntas" aria-labelledby="faq-title">
+    <h2 id="faq-title">Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <details><summary>¿Cuál es la diferencia entre margen y recargo?<span aria-hidden="true">+</span></summary><p>El recargo (o markup) es el porcentaje que le sumas al costo. El margen es el porcentaje de ganancia sobre el precio de venta. Un producto que cuesta $1.000 y se vende a $1.300 tiene un recargo de 30 % y un margen de 23,1 %: es la misma ganancia, medida contra dos números distintos.</p></details>
+      <details><summary>¿Cómo calculo el precio de venta a partir del costo?<span aria-hidden="true">+</span></summary><p>Si quieres sumarle un porcentaje al costo: precio = costo × (1 + porcentaje). Si quieres ganar un porcentaje de lo que cobras: precio = costo ÷ (1 − porcentaje). Si además pagas una comisión al cobrar, divide el resultado por (1 − comisión).</p></details>
+      <details><summary>¿Cómo incluyo la comisión de Mercado Pago o de la tarjeta?<span aria-hidden="true">+</span></summary><p>La comisión se cobra sobre el precio total, así que hay que sumarla dividiendo: precio = (costo + ganancia) ÷ (1 − comisión). Ponla en el campo «Comisión al cobrar» de la calculadora y el precio ya sale ajustado para que tu ganancia no cambie.</p></details>
+      <details><summary>¿La calculadora guarda mis datos?<span aria-hidden="true">+</span></summary><p>No se envía nada a ningún lado: todas las cuentas se hacen en tu celular o computadora. Solo recuerda, en tu propio navegador, la comisión, el IVA y el redondeo que usaste la última vez, para que no tengas que cargarlos de nuevo.</p></details>
+      <details><summary>¿Es gratis?<span aria-hidden="true">+</span></summary><p>Sí, y sin registrarte. La hizo BSS, un sistema gratuito para llevar las cuentas de un negocio: ventas, stock, clientes y la ganancia de cada producto, desde el celular.</p></details>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-title">
+    <h2 id="cta-title">¿Y si la cuenta se hiciera sola?</h2>
+    <p>BSS guarda el costo de cada producto y te muestra cuánto te deja cada venta y qué productos te dan más ganancia. Gratis, desde el celular, sin instalar nada.</p>
+    <a class="btn" href="https://app.bssgestion.com.ar/registro">Probar BSS gratis</a>
+  </section>
+
+  <p class="more">También te puede servir: <a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">cómo llevar las cuentas de un kiosco</a> y <a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">cómo llevar las cuentas de un taller</a>.</p>
+</article>
+</main>
+
+<div class="sticky-price" id="sticky" hidden>
+  <span>Precio de venta<strong id="sticky-price">—</strong></span>
+  <a href="#result">Ver detalle</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 BSS · Business Solutions Software · Hecho por Simon Schmidt</span>
+    <nav aria-label="Enlaces"><a href="/">Inicio</a><a href="/herramientas/calculadora-de-precios/">Calculadora de precios</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var PAGE = 'https://bssgestion.com.ar/herramientas/calculadora-de-precios/';
+  var KEY = 'bss-calculadora-v1';
+
+  // Se escribe como lo escribe la gente: "1234,56", "1.234,56" o "1234.56".
+  function toNumber(value) {
+    var text = String(value == null ? '' : value).replace(/[\s$%]/g, '');
+    if (!text) return NaN;
+    var comma = text.indexOf(',') !== -1, dot = text.indexOf('.') !== -1;
+    if (comma && dot) {
+      text = text.lastIndexOf(',') > text.lastIndexOf('.') ? text.replace(/\./g, '').replace(',', '.') : text.replace(/,/g, '');
+    } else if (comma) {
+      text = text.replace(',', '.');
+    } else if (dot && /^\d{1,3}(\.\d{3})+$/.test(text)) {
+      text = text.replace(/\./g, ''); // 1.500 es mil quinientos
+    }
+    return Number(text);
+  }
+
+  var m0 = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', currencyDisplay: 'narrowSymbol', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  var m2 = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', currencyDisplay: 'narrowSymbol', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  function money(n) { var r = Math.round(n * 100) / 100; return (Math.abs(r - Math.round(r)) < 0.005 ? m0 : m2).format(r); }
+  var p1 = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 1 });
+  function pct(x) { return p1.format(x * 100) + ' %'; }
+
+  function read() {
+    var mode = document.querySelector('input[name="mode"]:checked');
+    return {
+      cost: toNumber($('cost').value),
+      gain: toNumber($('gain').value),
+      fee: $('fee').value.trim() === '' ? 0 : toNumber($('fee').value),
+      iva: Number($('iva').value),
+      round: Number($('round').value),
+      mode: mode ? mode.value : 'markup'
+    };
+  }
+
+  function roundUp(value, step) {
+    return step > 0 ? Math.ceil(value / step - 1e-9) * step : Math.round(value * 100) / 100;
+  }
+
+  // Lo que queda de cada venta, una vez que el posnet se lleva su parte y el IVA vuelve al fisco.
+  function settle(price, cost, f, v) {
+    var net = price / (1 + v);
+    var fee = price * f;
+    var tax = price - net;
+    return { price: price, net: net, fee: fee, tax: tax, cost: cost, profit: price - fee - tax - cost };
+  }
+
+  function compute(s) {
+    var C = s.cost, g = s.gain / 100, f = s.fee / 100, v = s.iva / 100;
+    if (!(C > 0)) return { error: 'Escribe cuánto te cuesta el producto para empezar.' };
+    if (!(g >= 0)) return { error: 'El porcentaje de ganancia tiene que ser un número, 0 o más.' };
+    if (!(f >= 0 && f < 1)) return { error: 'La comisión tiene que estar entre 0 y 99 %.' };
+    var keep = 1 - f * (1 + v); // de cada peso del precio sin IVA, lo que te queda
+    var net;
+    if (s.mode === 'margin') {
+      if (g >= keep) return { error: 'Con esa comisión no se puede ganar ' + pct(g) + ' de lo que cobras. Prueba con un porcentaje menor a ' + pct(keep) + '.' };
+      net = C / (keep - g);
+    } else {
+      net = C * (1 + g) / keep;
+    }
+    var r = settle(roundUp(net * (1 + v), s.round), C, f, v);
+    // Lo mismo, pero como lo haría la mayoría: sin descontar la comisión.
+    var naiveNet = s.mode === 'margin' ? C / (1 - g) : C * (1 + g);
+    r.naive = settle(roundUp(naiveNet * (1 + v), s.round), C, f, v);
+    r.naive.expected = s.mode === 'margin' ? g * r.naive.net : C * g;
+    // Para el aviso de recargo: lo que habría que cobrar para ganar ese % de verdad sobre el precio.
+    r.asMargin = g < keep ? roundUp(C / (keep - g) * (1 + v), s.round) : null;
+    r.g = g; r.f = f; r.v = v; r.mode = s.mode;
+    return r;
+  }
+
+  function seg(color, value, total) {
+    var i = document.createElement('i');
+    i.style.background = color;
+    i.style.width = (Math.max(0, value) / total * 100) + '%';
+    return i;
+  }
+
+  function render() {
+    var s = read();
+    var r = compute(s);
+    var bar = $('bar'), legend = $('legend'), insight = $('insight');
+    bar.textContent = ''; legend.textContent = '';
+    if (r.error) {
+      $('price').textContent = '—'; $('sticky-price').textContent = '—';
+      $('profit').textContent = '—'; $('margin').textContent = '—'; $('markup').textContent = '—';
+      insight.className = 'insight err'; insight.textContent = r.error;
+      return;
+    }
+    $('price').textContent = money(r.price);
+    $('sticky-price').textContent = money(r.price);
+    $('price-sub').textContent = r.v > 0 ? 'por unidad, con IVA incluido' : 'por unidad';
+    $('profit').textContent = money(r.profit);
+    $('margin-label').textContent = r.v > 0 ? 'Margen sobre el precio sin IVA' : 'Margen sobre lo que cobras';
+    $('margin').textContent = pct(r.profit / r.net);
+    $('markup').textContent = pct(r.profit / r.cost);
+
+    var parts = [
+      ['Costo', r.cost, 'var(--seg-cost)'],
+      ['Comisión', r.fee, 'var(--seg-fee)'],
+      ['IVA', r.tax, 'var(--seg-tax)'],
+      ['Tu ganancia', r.profit, 'var(--seg-gain)']
+    ];
+    parts.forEach(function (p) {
+      if (p[1] <= 0.004 && p[0] !== 'Costo' && p[0] !== 'Tu ganancia') return;
+      bar.appendChild(seg(p[2], p[1], r.price));
+      var li = document.createElement('li');
+      var dot = document.createElement('i'); dot.style.background = p[2];
+      var name = document.createElement('span'); name.textContent = p[0];
+      var val = document.createElement('b'); val.textContent = money(Math.max(0, p[1]));
+      li.appendChild(dot); li.appendChild(name); li.appendChild(val);
+      legend.appendChild(li);
+    });
+
+    insight.className = 'insight';
+    insight.textContent = '';
+    var add = function (strong, rest) {
+      if (strong) { var b = document.createElement('strong'); b.textContent = strong; insight.appendChild(b); }
+      insight.appendChild(document.createTextNode(rest));
+    };
+    var n = r.naive;
+    if (r.f > 0 && n.expected > 0) {
+      var lost = 1 - n.profit / n.expected;
+      add('La comisión se come ' + pct(Math.min(1, Math.max(0, lost))) + ' de tu ganancia. ',
+        'Si no la contaras, cobrarías ' + money(n.price) + ' y te quedarían ' + money(Math.max(0, n.profit)) +
+        ' en vez de ' + money(n.expected) + '. Con el precio de arriba, la comisión ya está cubierta.');
+    } else if (r.mode === 'markup' && r.g > 0) {
+      var over = r.v > 0 ? ' del precio sin IVA' : ' de lo que cobras';
+      add('Sumarle ' + pct(r.g) + ' al costo no es ganar ' + pct(r.g) + over + ': ',
+        'es ' + pct(r.profit / r.net) + '.' + (r.asMargin ? ' Para ganar ' + pct(r.g) + ' sobre el precio, tendrías que cobrar ' + money(r.asMargin) + '.' : ''));
+    } else if (r.mode === 'margin' && r.g > 0) {
+      add('Para ganar ' + pct(r.g) + ' de lo que cobras, ', 'le estás sumando ' + pct(r.profit / r.cost) + ' al costo.');
+    } else {
+      add('Con 0 % de ganancia ', 'solo recuperas lo que pagaste' + (r.price > r.cost + r.fee + r.tax + 0.004 ? ', más lo que suma el redondeo.' : '.'));
+    }
+  }
+
+  // Recordar la comisión, el IVA y el redondeo: suelen ser los mismos en cada cuenta.
+  function save() {
+    var s = read();
+    try { localStorage.setItem(KEY, JSON.stringify({ gain: $('gain').value, fee: $('fee').value, iva: s.iva, round: s.round, mode: s.mode })); } catch (e) {}
+  }
+  function restore() {
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    if (!saved) return;
+    if (typeof saved.gain === 'string') $('gain').value = saved.gain;
+    if (typeof saved.fee === 'string') $('fee').value = saved.fee;
+    if ($('iva').querySelector('option[value="' + saved.iva + '"]')) $('iva').value = String(saved.iva);
+    if ($('round').querySelector('option[value="' + saved.round + '"]')) $('round').value = String(saved.round);
+    var m = document.querySelector('input[name="mode"][value="' + saved.mode + '"]');
+    if (m) m.checked = true;
+  }
+
+  restore();
+  render();
+  $('calc').addEventListener('input', function () { render(); save(); });
+  $('calc').addEventListener('change', function () { render(); save(); });
+  $('calc').addEventListener('submit', function (e) { e.preventDefault(); });
+  ['cost', 'gain', 'fee'].forEach(function (id) {
+    $(id).addEventListener('focus', function (e) { setTimeout(function () { try { e.target.select(); } catch (_) {} }, 0); });
+  });
+
+  var shareText = '¿A cuánto vender un producto? Esta calculadora gratis te lo dice, con la comisión de Mercado Pago y el IVA incluidos: ' + PAGE;
+  $('wa').href = 'https://wa.me/?text=' + encodeURIComponent(shareText);
+  $('copy').addEventListener('click', function () {
+    var btn = this;
+    var done = function (msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copiar enlace'; }, 2200); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(PAGE).then(function () { done('Enlace copiado'); }, function () { done('bssgestion.com.ar/herramientas/calculadora-de-precios'); });
+    } else {
+      done('bssgestion.com.ar/herramientas/calculadora-de-precios');
+    }
+  });
+
+  // En el celular el precio queda abajo de los campos: una barra fija lo mantiene a la vista.
+  var sticky = $('sticky');
+  if ('IntersectionObserver' in window && window.matchMedia) {
+    var narrow = window.matchMedia('(max-width: 899px)');
+    var formVisible = false, resultVisible = true;
+    var update = function () { sticky.hidden = !(narrow.matches && formVisible && !resultVisible); };
+    new IntersectionObserver(function (es) { formVisible = es[0].isIntersecting; update(); }, { threshold: 0.05 }).observe($('calc'));
+    new IntersectionObserver(function (es) { resultVisible = es[0].isIntersecting; update(); }, { threshold: 0.25 }).observe($('result'));
+    if (narrow.addEventListener) narrow.addEventListener('change', update);
+  }
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "34c6cefe4a0145269f7fbffafb29298b"}'></script>
+</body>
+</html>

@@ -101,6 +101,9 @@ main section[id] { scroll-margin-top: 76px; }
 .nav .btn:hover { background: var(--ink); }
 .btn svg { width: 18px; height: 18px; }
 @media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+/* On most phones the brand line and the button did not fit side by side, so the
+   sticky header broke into two rows and took twice the screen. */
+@media (max-width: 520px) { .top .wrap { flex-wrap: nowrap; } .brand small { display: none; } }
 
 /* Hero */
 .hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(36px, 6vw, 64px); align-items: center; padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 88px); }
@@ -242,6 +245,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
       <a href="/#que-hace">Qué hace</a>
       <a href="/#confianza">Confianza</a>
       <a href="/#preguntas">Preguntas</a>
+      <a href="/herramientas/calculadora-de-precios/">Calculadora</a>
       <a href="https://app.bssgestion.com.ar/entrar">Entrar</a>
       <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Probar gratis</a>
     </nav>
@@ -339,6 +343,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     <li><strong>Qué tipo de trabajo deja más</strong>. Casi siempre hay uno que rinde mucho más que el resto y no es el que más haces.</li>
   </ul>
   <p>Con eso puedes decidir cosas concretas: subir el precio de un trabajo que está barato, dejar de hacer uno que te lleva tres horas y deja poco, o buscar otro proveedor de un repuesto puntual.</p>
+  <div class="tip"><strong>Para poner el precio de un repuesto</strong>Usa la <a href="/herramientas/calculadora-de-precios/">calculadora de precio de venta</a>: costo del repuesto, la ganancia que quieres y la comisión del posnet o Mercado Pago. Te dice a cuánto cobrarlo para que la comisión no salga de tu bolsillo.</div>
 
   <h2>¿Cuaderno, Excel o app?</h2>
   <p>El cuaderno funciona hasta que hay varios trabajos abiertos a la vez. El Excel ordena mejor, pero desde el celular, con las manos ocupadas y un cliente esperando, es incómodo. Una app pensada para negocios chicos hace las cuentas sola: cargas el trabajo con el repuesto y la mano de obra por separado, el repuesto se descuenta del stock, la mano de obra no, y a fin de mes ves qué deja cada cosa sin sacar una sola cuenta.</p>
@@ -355,7 +360,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 <footer>
   <div class="wrap">
     <span>© 2026 BSS · Business Solutions Software · Hecho por Simon Schmidt</span>
-    <nav aria-label="Enlaces"><a href="/#preguntas">Preguntas</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="/#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
+    <nav aria-label="Enlaces"><a href="/#preguntas">Preguntas</a><a href="/herramientas/calculadora-de-precios/">Calculadora de precios</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="/#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "34c6cefe4a0145269f7fbffafb29298b"}'></script>
