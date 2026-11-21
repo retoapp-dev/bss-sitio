@@ -17,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BSS · Business Solutions Software">
 <meta property="og:title" content="BSS | Tu negocio, en blanco y negro">
-<meta property="og:description" content="Ventas, gastos, stock, clientes y proveedores en un solo lugar. Gratis, sin instalar nada y para cualquier negocio.">
+<meta property="og:description" content="Tu catálogo online con pedidos por WhatsApp, y tus ventas, gastos y stock en un solo lugar. Gratis, sin instalar nada y para cualquier negocio.">
 <meta property="og:url" content="https://bssgestion.com.ar/">
 <meta property="og:image" content="https://bssgestion.com.ar/og.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://bssgestion.com.ar/og.png?v=2">
 <link rel="canonical" href="https://bssgestion.com.ar/">
-<meta name="description" content="Ventas, gastos, stock, clientes y proveedores en un solo lugar. Gratis, sin instalar nada y para cualquier negocio.">
+<meta name="description" content="Tu catálogo online con pedidos por WhatsApp, y tus ventas, gastos y stock en un solo lugar. Gratis, sin instalar nada y para cualquier negocio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
@@ -48,17 +48,20 @@
   --font-display: "Manrope", "Segoe UI", system-ui, sans-serif;
   --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
   --radius: 16px;
+  --wa-chat: #efeae2; --wa-bubble: #ffffff; --wa-head: #ffffff; --wa-ink: #111b21; --wa-meta: #667781; --wa-green: #1a8f4c;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
     --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+    --wa-chat: #0b141a; --wa-bubble: #202c33; --wa-head: #202c33; --wa-ink: #e9edef; --wa-meta: #8696a0; --wa-green: #25d366;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0b0b0b; --surface: #151515; --soft: #121212; --ink: #f2f2f1; --muted: #c4c4c2; --faint: #a9a9a7;
   --line: #2b2b2a; --invert-bg: #f2f2f1; --invert-fg: #111111; --invert-muted: #3f3f3e; --bar: #ededec; --alert: #ff8a7a;
+  --wa-chat: #0b141a; --wa-bubble: #202c33; --wa-head: #202c33; --wa-ink: #e9edef; --wa-meta: #8696a0; --wa-green: #25d366;
   color-scheme: dark;
 }
 
@@ -107,6 +110,9 @@ main section[id] { scroll-margin-top: 76px; }
 .nav .btn:hover { background: var(--ink); }
 .btn svg { width: 18px; height: 18px; }
 @media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+/* Tablets: the two links that are also in the footer step aside so the menu stays on one row. */
+@media (max-width: 1080px) { .nav a.nav-wide { display: none; } }
+@media (max-width: 900px) { .nav a.nav-mid { display: none; } }
 /* On most phones the brand line and the button did not fit side by side, so the
    sticky header broke into two rows and took twice the screen. */
 @media (max-width: 520px) { .top .wrap { flex-wrap: nowrap; } .brand small { display: none; } }
@@ -145,6 +151,54 @@ main section[id] { scroll-margin-top: 76px; }
 .rows div:last-child { border-bottom: 0; }
 .rows b { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .mock figcaption { padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--faint); }
+
+/* Online catalog: the phone is the shop page, the chat is what reaches the business. */
+.cat { display: grid; gap: 28px; grid-template-areas: "intro" "visual" "steps" "actions"; }
+.cat > .intro { grid-area: intro; }
+.cat-steps { grid-area: steps; }
+.cat-actions { grid-area: actions; display: grid; gap: 22px; min-width: 0; }
+@media (min-width: 960px) {
+  .cat { grid-template-columns: minmax(0, 1fr) minmax(0, 480px); grid-template-areas: "intro visual" "steps visual" "actions visual"; column-gap: clamp(48px, 6vw, 88px); row-gap: 26px; }
+  .cat-visual { align-self: center; }
+}
+.cat-steps { min-width: 0; list-style: none; margin: 0; padding: 0; counter-reset: c; border-top: 1px solid var(--line); }
+.cat-steps li { counter-increment: c; display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.cat-steps li::before { content: counter(c); grid-row: 1 / span 2; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; font: 700 13px/1 var(--font-display); }
+.cat-steps strong { font: 700 17px/1.4 var(--font-display); }
+.cat-steps span { font-size: 15px; color: var(--muted); }
+.cat-steps code { font-family: var(--font-body); font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
+.cat-help { border-radius: var(--radius); background: var(--bg); border: 1px solid var(--line); padding: clamp(16px, 3vw, 20px); display: grid; gap: 12px; }
+.cat-help strong { font: 700 17px var(--font-display); }
+.cat-help p { font-size: 15px; color: var(--muted); }
+.cat-visual { grid-area: visual; margin: 0; display: grid; width: 100%; max-width: 480px; justify-self: center; min-width: 0; }
+.phone { justify-self: start; width: min(304px, 80%); border-radius: 38px; padding: 9px; background: #0a0a0a; box-shadow: 0 0 0 1px var(--line), 0 30px 70px rgba(0,0,0,.14); }
+.phone-screen { border-radius: 30px; overflow: hidden; background: var(--bg); color: var(--ink); display: grid; }
+.shop-head { padding: 22px 16px 12px; display: grid; gap: 6px; justify-items: start; }
+.shop-logo { width: 40px; height: 40px; border-radius: 11px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font: 800 15px var(--font-display); }
+.shop-head strong { font: 800 21px/1.1 var(--font-display); letter-spacing: -0.02em; }
+.shop-head small { font-size: 12px; line-height: 1.4; color: var(--muted); }
+.shop-items { list-style: none; margin: 0; padding: 4px 12px 14px; display: grid; gap: 7px; }
+.shop-items li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+.shop-items li.on { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.shop-items b { display: block; font: 700 13px/1.3 var(--font-display); }
+.shop-items div > span { font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.shop-items em { font-style: normal; font-weight: 400; color: var(--muted); }
+.shop-items i { font-style: normal; font-size: 11px; font-weight: 700; border: 1px solid var(--ink); border-radius: 8px; padding: 5px 9px; white-space: nowrap; }
+.shop-items i.qty { display: flex; gap: 12px; }
+.shop-items li.out i { border-color: transparent; font-weight: 400; color: var(--faint); }
+.shop-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 14px 16px; background: var(--invert-bg); color: var(--invert-fg); }
+.shop-bar small { display: block; font-size: 11px; color: var(--invert-muted); }
+.shop-bar b { font: 800 18px var(--font-display); font-variant-numeric: tabular-nums; }
+.shop-bar > span { background: var(--invert-fg); color: var(--invert-bg); border-radius: 10px; padding: 8px 12px; font-size: 12px; font-weight: 700; }
+.chat { justify-self: end; width: min(300px, 86%); margin-top: -104px; position: relative; border-radius: 18px; overflow: hidden; background: var(--wa-chat); color: var(--wa-ink); box-shadow: 0 0 0 1px var(--line), 0 24px 50px rgba(0,0,0,.18); }
+.chat-head { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--wa-head); }
+.chat-av { width: 30px; height: 30px; flex: none; border-radius: 50%; background: var(--wa-chat); display: grid; place-items: center; font: 700 13px var(--font-body); }
+.chat-head strong { display: block; font-size: 14px; line-height: 1.2; }
+.chat-head small { display: block; font-size: 11px; color: var(--wa-meta); }
+.chat-head svg { margin-left: auto; width: 20px; height: 20px; flex: none; color: var(--wa-green); }
+.bubble { margin: 12px; padding: 8px 10px 6px; border-radius: 2px 10px 10px 10px; background: var(--wa-bubble); font-size: 13px; line-height: 1.45; display: grid; gap: 6px; box-shadow: 0 1px 1px rgba(11,20,26,.12); }
+.bubble time { justify-self: end; font-size: 11px; color: var(--wa-meta); }
+.cat-visual figcaption { margin-top: 14px; font-size: 12px; color: var(--faint); }
 
 /* Who it's for */
 .who { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
@@ -199,7 +253,7 @@ main section[id] { scroll-margin-top: 76px; }
 .story strong { font-weight: 700; }
 .placeholder { border: 1px dashed var(--faint); border-radius: 10px; padding: 12px 14px; color: var(--faint); font-size: 15px; }
 .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.contact code { font-family: var(--font-body); font-size: 16px; font-weight: 600; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); user-select: all; word-break: break-all; }
+.contact code { font-family: var(--font-body); font-size: clamp(14px, 3.9vw, 16px); font-weight: 600; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); user-select: all; word-break: break-all; }
 .copy { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); font: 600 14px var(--font-body); cursor: pointer; }
 
 /* FAQ */
@@ -221,7 +275,7 @@ main section[id] { scroll-margin-top: 76px; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 32px 48px; font-size: 14px; color: var(--muted); }
 footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "BSS es gratis por ahora. Si en el futuro hay planes pagos, lo sabrás con al menos 30 días de anticipación y nunca se cobra nada sin que lo aceptes."}}, {"@type": "Question", "name": "¿Tengo que instalar algo?", "acceptedAnswer": {"@type": "Answer", "text": "No. BSS funciona en el navegador del celular, la tablet o la computadora. Entras con tu correo y contraseña desde donde estés."}}, {"@type": "Question", "name": "No sé nada de contabilidad, ¿la puedo usar?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Está pensada justamente para eso: anotas ventas y gastos con palabras de todos los días y BSS hace las cuentas por ti. Además puedes probarla con datos de ejemplo antes de cargar los tuyos."}}, {"@type": "Question", "name": "Ya tengo todo en Excel, ¿lo pierdo?", "acceptedAnswer": {"@type": "Answer", "text": "No. Puedes importar tu inventario desde Excel, Word o Google Sheets, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato."}}, {"@type": "Question", "name": "¿Puede usarla alguien de mi equipo?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Desde Ajustes le das acceso con su propio usuario. Puede cargar ventas, compras y productos, pero no borrar datos ni cambiar la configuración."}}, {"@type": "Question", "name": "¿Reemplaza a mi contador o emite facturas?", "acceptedAnswer": {"@type": "Answer", "text": "No. BSS te ayuda a ordenar y entender tu negocio, y te da todo listo en Excel para tu contador. Los recibos y presupuestos no son facturas fiscales y el cálculo de IVA es orientativo."}}, {"@type": "Question", "name": "¿Mis datos están seguros?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Toda la conexión está cifrada, las contraseñas se guardan de forma que nadie puede leerlas y cada negocio ve solo sus propios datos. Además se hace una copia de seguridad cifrada todos los días. Nunca vendemos ni compartimos tus datos para publicidad."}}, {"@type": "Question", "name": "¿Sirve para mi rubro?", "acceptedAnswer": {"@type": "Answer", "text": "Sirve para cualquier negocio que venda productos o servicios: kioscos, almacenes, ropa, ferreterías, tecnología, gastronomía, emprendimientos y profesionales independientes. Tú decides qué productos, categorías y gastos cargar."}}, {"@type": "Question", "name": "¿Necesito internet para usarla?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, BSS guarda todo en la nube para que tus datos estén a salvo y los veas desde cualquier dispositivo. Usa muy pocos datos, así que alcanza con el plan del celular."}}, {"@type": "Question", "name": "¿Puedo usar otra moneda?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Al crear la cuenta, BSS usa la moneda de tu país, y desde Ajustes puedes cambiarla por otra: pesos argentinos, dólares, pesos uruguayos, euros y varias más."}}, {"@type": "Question", "name": "¿Qué pasa si me olvido la contraseña?", "acceptedAnswer": {"@type": "Answer", "text": "Tocas «¿Olvidaste tu contraseña?» al entrar y te llega un correo con un enlace para elegir una nueva. Tarda menos de un minuto."}}, {"@type": "Question", "name": "¿Qué pasa si dejo de usarla?", "acceptedAnswer": {"@type": "Answer", "text": "Descargas todos tus datos en Excel y, si quieres, eliminas tu cuenta desde Ajustes. Se borra todo, sin trámites."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "BSS es gratis por ahora. Si en el futuro hay planes pagos, lo sabrás con al menos 30 días de anticipación y nunca se cobra nada sin que lo aceptes."}}, {"@type": "Question", "name": "¿Qué es el catálogo online?", "acceptedAnswer": {"@type": "Answer", "text": "Es una página con tus productos y precios, en un link para compartir por WhatsApp o en redes. Tus clientes eligen y el pedido te llega a tu WhatsApp, armado y con el total. Se activa gratis desde la app, no cobra comisiones y, cuando cambias un precio en BSS, el catálogo se actualiza solo."}}, {"@type": "Question", "name": "¿Tengo que instalar algo?", "acceptedAnswer": {"@type": "Answer", "text": "No. BSS funciona en el navegador del celular, la tablet o la computadora. Entras con tu correo y contraseña desde donde estés."}}, {"@type": "Question", "name": "No sé nada de contabilidad, ¿la puedo usar?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Está pensada justamente para eso: anotas ventas y gastos con palabras de todos los días y BSS hace las cuentas por ti. Además puedes probarla con datos de ejemplo antes de cargar los tuyos."}}, {"@type": "Question", "name": "Ya tengo todo en Excel, ¿lo pierdo?", "acceptedAnswer": {"@type": "Answer", "text": "No. Puedes importar tu inventario desde Excel, Word o Google Sheets, o pegar tu lista tal como la tienes, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato."}}, {"@type": "Question", "name": "¿Puede usarla alguien de mi equipo?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Desde Ajustes le das acceso con su propio usuario. Puede cargar ventas, compras y productos, pero no borrar datos ni cambiar la configuración."}}, {"@type": "Question", "name": "¿Reemplaza a mi contador o emite facturas?", "acceptedAnswer": {"@type": "Answer", "text": "No. BSS te ayuda a ordenar y entender tu negocio, y te da todo listo en Excel para tu contador. Los recibos y presupuestos no son facturas fiscales y el cálculo de IVA es orientativo."}}, {"@type": "Question", "name": "¿Mis datos están seguros?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Toda la conexión está cifrada, las contraseñas se guardan de forma que nadie puede leerlas y cada negocio ve solo sus propios datos. Además se hace una copia de seguridad cifrada todos los días. Nunca vendemos ni compartimos tus datos para publicidad."}}, {"@type": "Question", "name": "¿Sirve para mi rubro?", "acceptedAnswer": {"@type": "Answer", "text": "Sirve para cualquier negocio que venda productos o servicios: kioscos, almacenes, ropa, ferreterías, tecnología, gastronomía, emprendimientos y profesionales independientes. Tú decides qué productos, categorías y gastos cargar."}}, {"@type": "Question", "name": "¿Necesito internet para usarla?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, BSS guarda todo en la nube para que tus datos estén a salvo y los veas desde cualquier dispositivo. Usa muy pocos datos, así que alcanza con el plan del celular."}}, {"@type": "Question", "name": "¿Puedo usar otra moneda?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Al crear la cuenta, BSS usa la moneda de tu país, y desde Ajustes puedes cambiarla por otra: pesos argentinos, dólares, pesos uruguayos, euros y varias más."}}, {"@type": "Question", "name": "¿Qué pasa si me olvido la contraseña?", "acceptedAnswer": {"@type": "Answer", "text": "Tocas «¿Olvidaste tu contraseña?» al entrar y te llega un correo con un enlace para elegir una nueva. Tarda menos de un minuto."}}, {"@type": "Question", "name": "¿Qué pasa si dejo de usarla?", "acceptedAnswer": {"@type": "Answer", "text": "Descargas todos tus datos en Excel y, si quieres, eliminas tu cuenta desde Ajustes. Se borra todo, sin trámites."}}]}</script>
 </head>
 <body>
 
@@ -229,11 +283,12 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="BSS, ir al inicio"><span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="currentColor"><rect x="2" y="2" width="17" height="17" rx="3.6"/><rect x="2" y="21" width="17" height="17" rx="3.6"/><circle cx="29.5" cy="29.5" r="8.5"/><path d="M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z" fill="var(--bg)"/></svg></span><span><strong>BSS</strong><small>Business Solutions Software</small></span></a>
     <nav class="nav" aria-label="Secciones">
-      <a href="#para-quien">Para quién</a>
+      <a href="#catalogo">Catálogo</a>
       <a href="#que-hace">Qué hace</a>
-      <a href="#confianza">Confianza</a>
+      <a class="nav-mid" href="#para-quien">Para quién</a>
+      <a class="nav-wide" href="#confianza">Confianza</a>
       <a href="#preguntas">Preguntas</a>
-      <a href="/herramientas/calculadora-de-precios/">Calculadora</a>
+      <a class="nav-wide" href="/herramientas/calculadora-de-precios/">Calculadora</a>
       <a href="https://app.bssgestion.com.ar/entrar">Entrar</a>
       <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Probar gratis</a>
     </nav>
@@ -245,10 +300,10 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     <div class="hero-copy">
       <p class="eyebrow">Gestión simple para cualquier negocio</p>
       <h1>Tu negocio,<br>en blanco y negro.</h1>
-      <p class="lead">Ventas, gastos y stock con los números claros. <strong style="color:var(--ink);font-weight:600">Del tamaño que sea</strong>, sin saber de contabilidad.</p>
+      <p class="lead">Tu catálogo online con pedidos por WhatsApp, y tus ventas, gastos y stock con los números claros. <strong style="color:var(--ink);font-weight:600">Del tamaño que sea</strong>, sin saber de contabilidad.</p>
       <div class="ctas">
         <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Crear mi cuenta gratis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn ghost" href="#que-hace">Ver qué hace</a>
+        <a class="btn ghost" href="#catalogo">Ver el catálogo online</a>
       </div>
       <ul class="ticks">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Funciona en el celular y en la computadora</li>
@@ -280,6 +335,70 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     </figure>
   </section>
 
+  <section id="catalogo" class="band surface" aria-labelledby="t-catalogo">
+    <div class="wrap cat">
+      <div class="intro">
+        <p class="eyebrow">Nuevo · Catálogo online</p>
+        <h2 id="t-catalogo" class="h2">Tus clientes eligen. El pedido te llega por WhatsApp.</h2>
+        <p class="lead">Una página con tus productos y precios, en un link tuyo para compartir en tus estados, en Instagram o con tus clientes de siempre. Gratis y sin comisiones.</p>
+      </div>
+      <figure class="cat-visual" aria-label="Ejemplo de un catálogo online y del pedido que le llega al negocio por WhatsApp">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen">
+            <div class="shop-head"><span class="shop-logo">HL</span><strong>Heladería Lucía</strong><small>Envíos de martes a domingo, de 14 a 23 h. Elige lo que quieres y envía el pedido por WhatsApp.</small></div>
+            <ul class="shop-items">
+              <li><div><b>Dulce de leche</b><span>$ 6.000 <em>por kg</em></span></div><i>Agregar</i></li>
+              <li class="on"><div><b>Helado 1 kg</b><span>$ 12.000</span></div><i class="qty"><span>−</span>1<span>+</span></i></li>
+              <li><div><b>Helado 1/2 kg</b><span>$ 6.500</span></div><i>Agregar</i></li>
+              <li class="on"><div><b>Palito bombón</b><span>$ 1.200</span></div><i class="qty"><span>−</span>3<span>+</span></i></li>
+              <li class="out"><div><b>Torta helada</b><span>$ 18.000</span></div><i>Sin stock</i></li>
+            </ul>
+            <div class="shop-bar"><div><small>2 productos</small><b>$ 15.600</b></div><span>Ver pedido</span></div>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="chat-head"><span class="chat-av" aria-hidden="true">M</span><div><strong>Martín</strong><small>Pedido desde tu catálogo</small></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg></div>
+          <div class="bubble">
+            <p>¡Hola Heladería Lucía! Quiero hacer este pedido (n.º 12):</p>
+            <p>• 1 × Helado 1 kg — $ 12.000<br>• 3 × Palito bombón — $ 3.600</p>
+            <p><b>Total: $ 15.600</b></p>
+            <p>A nombre de: Martín</p>
+            <time>20:14</time>
+          </div>
+        </div>
+        <figcaption>Así se ve tu catálogo y así te llega el pedido. Negocio de ejemplo.</figcaption>
+      </figure>
+      <ol class="cat-steps">
+        <li><strong>Escribe tu lista</strong><span>Un producto por renglón con su precio, o tráela desde Excel. Si ya los tienes en BSS, aparecen solos.</span></li>
+        <li><strong>Comparte tu link</strong><span>Algo como <code>app.bssgestion.com.ar/c/tu-negocio</code>. Si cambias un precio, el catálogo se actualiza solo.</span></li>
+        <li><strong>Recibe el pedido armado</strong><span>Con cada producto, el total y el nombre de quien pide. Sin pasar precios uno por uno.</span></li>
+        <li><strong>Regístralo con un toque</strong><span>Cuando lo entregas o lo cobras, pasa a tus ventas y descuenta el stock.</span></li>
+      </ol>
+      <div class="cat-actions">
+        <div class="ctas"><a class="btn solid" href="https://app.bssgestion.com.ar/registro">Armar mi catálogo gratis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div class="cat-help">
+          <strong>¿Sin tiempo para cargarlo?</strong>
+          <p>Crea tu cuenta y mándanos tu lista de productos con precios, como la tengas: una foto, un Excel o un mensaje. Te dejamos el catálogo armado, sin costo.</p>
+          <div class="contact"><code id="mail-cat">support.businesssoftware@gmail.com</code><button class="copy" data-copy="mail-cat" type="button">Copiar correo</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="que-hace" class="band" aria-labelledby="t-hace">
+    <div class="wrap stack">
+      <div class="intro">
+        <p class="eyebrow">Qué hace</p>
+        <h2 id="t-hace" class="h2">Vender, controlar y entender. En un solo lugar.</h2>
+      </div>
+      <div class="pillars">
+        <article class="pillar"><h3>Vender</h3><p>Cobra en segundos y deja todo anotado sin pensar.</p><ul><li><strong>Catálogo online:</strong> tus clientes eligen y el pedido te llega por WhatsApp.</li><li><strong>Venta rápida:</strong> tocas los productos, cobras y te calcula el vuelto.</li><li><strong>Fiado y cuenta corriente:</strong> lo que te deben, con fecha de vencimiento.</li><li><strong>Presupuestos y recibos</strong> con el nombre de tu negocio, en PDF.</li><li><strong>Clientes:</strong> quién te compra y cuánto.</li></ul></article>
+        <article class="pillar"><h3>Controlar</h3><p>Que nada se pierda: ni mercadería, ni plata, ni vencimientos.</p><ul><li><strong>Stock:</strong> baja solo con cada venta y avisa cuando queda poco.</li><li><strong>Compras a proveedores:</strong> suman stock y registran el gasto a la vez.</li><li><strong>Gastos fijos</strong> que se anotan solos cada mes.</li><li><strong>Límites de gasto</strong> por categoría, con aviso al pasarte.</li></ul></article>
+        <article class="pillar"><h3>Entender</h3><p>Números claros para decidir qué sigue.</p><ul><li><strong>Resumen del mes</strong> comparado con el anterior.</li><li><strong>Qué productos te dejan más ganancia</strong> y cuáles no.</li><li><strong>IVA del período:</strong> lo que cobraste y lo que pagaste.</li><li><strong>Todo en Excel</strong> cuando lo quieras llevar a tu contador.</li></ul></article>
+      </div>
+    </div>
+  </section>
+
   <section id="para-quien" class="band surface" aria-labelledby="t-quien">
     <div class="wrap stack">
       <div class="intro">
@@ -300,21 +419,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
       <div class="promise">
         <div><strong>No necesitas saber de números</strong><span>Palabras simples: "te deben", "se va en", "queda poco". Nada de jerga contable.</span></div>
         <div><strong>Si usas el celular, puedes usar BSS</strong><span>Botones grandes, pantallas claras y nada que instalar.</span></div>
-        <div><strong>Empiezas con lo que ya tienes</strong><span>Tu lista de Excel, tu tabla de Word o una hoja de Google entran solas.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="que-hace" class="band" aria-labelledby="t-hace">
-    <div class="wrap stack">
-      <div class="intro">
-        <p class="eyebrow">Qué hace</p>
-        <h2 id="t-hace" class="h2">Vender, controlar y entender. En un solo lugar.</h2>
-      </div>
-      <div class="pillars">
-        <article class="pillar"><h3>Vender</h3><p>Cobra en segundos y deja todo anotado sin pensar.</p><ul><li><strong>Venta rápida:</strong> tocas los productos, cobras y te calcula el vuelto.</li><li><strong>Fiado y cuenta corriente:</strong> lo que te deben, con fecha de vencimiento.</li><li><strong>Presupuestos y recibos</strong> con el nombre de tu negocio, en PDF.</li><li><strong>Clientes:</strong> quién te compra y cuánto.</li></ul></article>
-        <article class="pillar"><h3>Controlar</h3><p>Que nada se pierda: ni mercadería, ni plata, ni vencimientos.</p><ul><li><strong>Stock:</strong> baja solo con cada venta y avisa cuando queda poco.</li><li><strong>Compras a proveedores:</strong> suman stock y registran el gasto a la vez.</li><li><strong>Gastos fijos</strong> que se anotan solos cada mes.</li><li><strong>Límites de gasto</strong> por categoría, con aviso al pasarte.</li></ul></article>
-        <article class="pillar"><h3>Entender</h3><p>Números claros para decidir qué sigue.</p><ul><li><strong>Resumen del mes</strong> comparado con el anterior.</li><li><strong>Qué productos te dejan más ganancia</strong> y cuáles no.</li><li><strong>IVA del período:</strong> lo que cobraste y lo que pagaste.</li><li><strong>Todo en Excel</strong> cuando lo quieras llevar a tu contador.</li></ul></article>
+        <div><strong>Empiezas con lo que ya tienes</strong><span>Escribes tu lista tal como la tienes, o la traes de Excel, Word o una hoja de Google.</span></div>
       </div>
     </div>
   </section>
@@ -324,8 +429,8 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
       <h2 id="t-como" class="h2">Empezar lleva cinco minutos.</h2>
       <ol class="steps">
         <li><strong>Crea tu cuenta</strong><span>Con tu correo y una contraseña. Eliges tu moneda: pesos uruguayos, argentinos, dólares y más.</span></li>
-        <li><strong>Trae lo que ya tienes</strong><span>Importa tu inventario desde Excel, Word o Google Sheets. O mira la app llena con datos de ejemplo.</span></li>
-        <li><strong>Vende y mira tus números</strong><span>Cada venta, compra y gasto se refleja al instante en tu resumen.</span></li>
+        <li><strong>Escribe tu lista de productos</strong><span>Uno por renglón con su precio, o tráela desde Excel, Word o Google Sheets. O mira la app llena con datos de ejemplo.</span></li>
+        <li><strong>Comparte tu catálogo y vende</strong><span>Los pedidos te llegan por WhatsApp, y cada venta, compra y gasto se refleja al instante en tu resumen.</span></li>
       </ol>
     </div>
   </section>
@@ -381,7 +486,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
         <h2 id="t-founder" class="h2">Hola, soy Simon Schmidt.</h2>
         <p class="lead story">Grande o chico, recién empezando o con años de camino: todo negocio merece tener sus números claros. Creé BSS con una sola idea en mente: <strong>ahorrarle tiempo a las personas</strong>. Ventas, gastos, stock, clientes y proveedores en un solo lugar, explicados con palabras simples. Menos tiempo haciendo cuentas, más tiempo haciendo crecer lo tuyo.</p>
         <p class="lead">Si tienes una idea, una duda o algo no funciona como esperas, escríbeme. Leo cada mensaje.</p>
-        <div class="contact"><code id="mail">support.businesssoftware@gmail.com</code><button class="copy" id="copy-mail" type="button">Copiar correo</button></div>
+        <div class="contact"><code id="mail">support.businesssoftware@gmail.com</code><button class="copy" data-copy="mail" type="button">Copiar correo</button></div>
       </div>
     </div>
   </section>
@@ -391,9 +496,10 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
       <h2 id="t-faq" class="h2">Preguntas frecuentes</h2>
       <div class="faq-list">
         <details><summary>¿Cuánto cuesta?<span aria-hidden="true">+</span></summary><p>BSS es gratis por ahora. Si en el futuro hay planes pagos, lo sabrás con al menos 30 días de anticipación y nunca se cobra nada sin que lo aceptes.</p></details>
+        <details><summary>¿Qué es el catálogo online?<span aria-hidden="true">+</span></summary><p>Es una página con tus productos y precios, en un link para compartir por WhatsApp o en redes. Tus clientes eligen y el pedido te llega a tu WhatsApp, armado y con el total. Se activa gratis desde la app, no cobra comisiones y, cuando cambias un precio en BSS, el catálogo se actualiza solo.</p></details>
         <details><summary>¿Tengo que instalar algo?<span aria-hidden="true">+</span></summary><p>No. BSS funciona en el navegador del celular, la tablet o la computadora. Entras con tu correo y contraseña desde donde estés.</p></details>
         <details><summary>No sé nada de contabilidad, ¿la puedo usar?<span aria-hidden="true">+</span></summary><p>Sí. Está pensada justamente para eso: anotas ventas y gastos con palabras de todos los días y BSS hace las cuentas por ti. Además puedes probarla con datos de ejemplo antes de cargar los tuyos.</p></details>
-        <details><summary>Ya tengo todo en Excel, ¿lo pierdo?<span aria-hidden="true">+</span></summary><p>No. Puedes importar tu inventario desde Excel, Word o Google Sheets, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato.</p></details>
+        <details><summary>Ya tengo todo en Excel, ¿lo pierdo?<span aria-hidden="true">+</span></summary><p>No. Puedes importar tu inventario desde Excel, Word o Google Sheets, o pegar tu lista tal como la tienes, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato.</p></details>
         <details><summary>¿Puede usarla alguien de mi equipo?<span aria-hidden="true">+</span></summary><p>Sí. Desde Ajustes le das acceso con su propio usuario. Puede cargar ventas, compras y productos, pero no borrar datos ni cambiar la configuración.</p></details>
         <details><summary>¿Reemplaza a mi contador o emite facturas?<span aria-hidden="true">+</span></summary><p>No. BSS te ayuda a ordenar y entender tu negocio, y te da todo listo en Excel para tu contador. Los recibos y presupuestos no son facturas fiscales y el cálculo de IVA es orientativo.</p></details>
         <details><summary>¿Mis datos están seguros?<span aria-hidden="true">+</span></summary><p>Sí. Toda la conexión está cifrada, las contraseñas se guardan de forma que nadie puede leerlas y cada negocio ve solo sus propios datos. Además se hace una copia de seguridad cifrada todos los días. Nunca vendemos ni compartimos tus datos para publicidad.</p></details>
@@ -409,7 +515,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
   <section id="empezar" class="close" aria-labelledby="t-empezar">
     <div class="wrap">
       <div class="close-card">
-        <div><h2 id="t-empezar">Tu negocio merece números claros.</h2><p>Crea tu cuenta en un minuto y mira BSS funcionando con datos de ejemplo.</p></div>
+        <div><h2 id="t-empezar">Tu negocio merece números claros.</h2><p>Crea tu cuenta en un minuto y comparte tu catálogo hoy mismo. O mira BSS funcionando con datos de ejemplo.</p></div>
         <a class="btn" href="https://app.bssgestion.com.ar/registro">Crear mi cuenta gratis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <p class="eyebrow" style="margin-top:12px">¿Ya tienes cuenta? <a href="https://app.bssgestion.com.ar/entrar">Entrar</a></p>
@@ -484,13 +590,16 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     }
   })();
   (function () {
-    var btn = document.getElementById('copy-mail');
-    var mail = document.getElementById('mail');
-    btn.addEventListener('click', function () {
-      var text = mail.textContent.trim();
-      var done = function () { btn.textContent = 'Copiado'; setTimeout(function () { btn.textContent = 'Copiar correo'; }, 1800); };
-      var select = function () { var r = document.createRange(); r.selectNodeContents(mail); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Seleccionado: cópialo'; };
-      try { navigator.clipboard.writeText(text).then(done, select); } catch (e) { select(); }
+    // Every "Copiar correo" button copies the address next to it.
+    document.querySelectorAll('.copy[data-copy]').forEach(function (btn) {
+      var mail = document.getElementById(btn.getAttribute('data-copy'));
+      if (!mail) return;
+      btn.addEventListener('click', function () {
+        var text = mail.textContent.trim();
+        var done = function () { btn.textContent = 'Copiado'; setTimeout(function () { btn.textContent = 'Copiar correo'; }, 1800); };
+        var select = function () { var r = document.createRange(); r.selectNodeContents(mail); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); btn.textContent = 'Seleccionado: cópialo'; };
+        try { navigator.clipboard.writeText(text).then(done, select); } catch (e) { select(); }
+      });
     });
   })();
 </script>
