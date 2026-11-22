@@ -111,8 +111,8 @@ main section[id] { scroll-margin-top: 76px; }
 .btn svg { width: 18px; height: 18px; }
 @media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
 /* Tablets: the two links that are also in the footer step aside so the menu stays on one row. */
-@media (max-width: 1080px) { .nav a.nav-wide { display: none; } }
-@media (max-width: 900px) { .nav a.nav-mid { display: none; } }
+@media (max-width: 939px) { .nav a.nav-wide { display: none; } }
+@media (max-width: 759px) { .nav a.nav-mid { display: none; } }
 /* On most phones the brand line and the button did not fit side by side, so the
    sticky header broke into two rows and took twice the screen. */
 @media (max-width: 520px) { .top .wrap { flex-wrap: nowrap; } .brand small { display: none; } }
@@ -256,15 +256,6 @@ main section[id] { scroll-margin-top: 76px; }
 .contact code { font-family: var(--font-body); font-size: clamp(14px, 3.9vw, 16px); font-weight: 600; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); user-select: all; word-break: break-all; }
 .copy { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); font: 600 14px var(--font-body); cursor: pointer; }
 
-/* FAQ */
-.faq { max-width: 860px; }
-.faq-list { border-top: 1px solid var(--line); }
-.faq details { border-bottom: 1px solid var(--line); }
-.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-weight: 600; font-size: 17px; cursor: pointer; list-style: none; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary span { font-size: 26px; line-height: 1; transition: transform .2s; }
-.faq details[open] summary span { transform: rotate(45deg); }
-.faq details p { padding-bottom: 20px; color: var(--muted); max-width: 70ch; }
 
 /* Closing */
 .close { padding-block: 24px; }
@@ -275,7 +266,6 @@ main section[id] { scroll-margin-top: 76px; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 32px 48px; font-size: 14px; color: var(--muted); }
 footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "BSS es gratis por ahora. Si en el futuro hay planes pagos, lo sabrás con al menos 30 días de anticipación y nunca se cobra nada sin que lo aceptes."}}, {"@type": "Question", "name": "¿Qué es el catálogo online?", "acceptedAnswer": {"@type": "Answer", "text": "Es una página con tus productos y precios, en un link para compartir por WhatsApp o en redes. Tus clientes eligen y el pedido te llega a tu WhatsApp, armado y con el total. Se activa gratis desde la app, no cobra comisiones y, cuando cambias un precio en BSS, el catálogo se actualiza solo."}}, {"@type": "Question", "name": "¿Tengo que instalar algo?", "acceptedAnswer": {"@type": "Answer", "text": "No. BSS funciona en el navegador del celular, la tablet o la computadora. Entras con tu correo y contraseña desde donde estés."}}, {"@type": "Question", "name": "No sé nada de contabilidad, ¿la puedo usar?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Está pensada justamente para eso: anotas ventas y gastos con palabras de todos los días y BSS hace las cuentas por ti. Además puedes probarla con datos de ejemplo antes de cargar los tuyos."}}, {"@type": "Question", "name": "Ya tengo todo en Excel, ¿lo pierdo?", "acceptedAnswer": {"@type": "Answer", "text": "No. Puedes importar tu inventario desde Excel, Word o Google Sheets, o pegar tu lista tal como la tienes, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato."}}, {"@type": "Question", "name": "¿Puede usarla alguien de mi equipo?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Desde Ajustes le das acceso con su propio usuario. Puede cargar ventas, compras y productos, pero no borrar datos ni cambiar la configuración."}}, {"@type": "Question", "name": "¿Reemplaza a mi contador o emite facturas?", "acceptedAnswer": {"@type": "Answer", "text": "No. BSS te ayuda a ordenar y entender tu negocio, y te da todo listo en Excel para tu contador. Los recibos y presupuestos no son facturas fiscales y el cálculo de IVA es orientativo."}}, {"@type": "Question", "name": "¿Mis datos están seguros?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Toda la conexión está cifrada, las contraseñas se guardan de forma que nadie puede leerlas y cada negocio ve solo sus propios datos. Además se hace una copia de seguridad cifrada todos los días. Nunca vendemos ni compartimos tus datos para publicidad."}}, {"@type": "Question", "name": "¿Sirve para mi rubro?", "acceptedAnswer": {"@type": "Answer", "text": "Sirve para cualquier negocio que venda productos o servicios: kioscos, almacenes, ropa, ferreterías, tecnología, gastronomía, emprendimientos y profesionales independientes. Tú decides qué productos, categorías y gastos cargar."}}, {"@type": "Question", "name": "¿Necesito internet para usarla?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, BSS guarda todo en la nube para que tus datos estén a salvo y los veas desde cualquier dispositivo. Usa muy pocos datos, así que alcanza con el plan del celular."}}, {"@type": "Question", "name": "¿Puedo usar otra moneda?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Al crear la cuenta, BSS usa la moneda de tu país, y desde Ajustes puedes cambiarla por otra: pesos argentinos, dólares, pesos uruguayos, euros y varias más."}}, {"@type": "Question", "name": "¿Qué pasa si me olvido la contraseña?", "acceptedAnswer": {"@type": "Answer", "text": "Tocas «¿Olvidaste tu contraseña?» al entrar y te llega un correo con un enlace para elegir una nueva. Tarda menos de un minuto."}}, {"@type": "Question", "name": "¿Qué pasa si dejo de usarla?", "acceptedAnswer": {"@type": "Answer", "text": "Descargas todos tus datos en Excel y, si quieres, eliminas tu cuenta desde Ajustes. Se borra todo, sin trámites."}}]}</script>
 </head>
 <body>
 
@@ -287,7 +277,6 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
       <a href="#que-hace">Qué hace</a>
       <a class="nav-mid" href="#para-quien">Para quién</a>
       <a class="nav-wide" href="#confianza">Confianza</a>
-      <a href="#preguntas">Preguntas</a>
       <a class="nav-wide" href="/herramientas/calculadora-de-precios/">Calculadora</a>
       <a href="https://app.bssgestion.com.ar/entrar">Entrar</a>
       <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Probar gratis</a>
@@ -491,27 +480,6 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
     </div>
   </section>
 
-  <section id="preguntas" class="band surface" aria-labelledby="t-faq">
-    <div class="wrap faq stack">
-      <h2 id="t-faq" class="h2">Preguntas frecuentes</h2>
-      <div class="faq-list">
-        <details><summary>¿Cuánto cuesta?<span aria-hidden="true">+</span></summary><p>BSS es gratis por ahora. Si en el futuro hay planes pagos, lo sabrás con al menos 30 días de anticipación y nunca se cobra nada sin que lo aceptes.</p></details>
-        <details><summary>¿Qué es el catálogo online?<span aria-hidden="true">+</span></summary><p>Es una página con tus productos y precios, en un link para compartir por WhatsApp o en redes. Tus clientes eligen y el pedido te llega a tu WhatsApp, armado y con el total. Se activa gratis desde la app, no cobra comisiones y, cuando cambias un precio en BSS, el catálogo se actualiza solo.</p></details>
-        <details><summary>¿Tengo que instalar algo?<span aria-hidden="true">+</span></summary><p>No. BSS funciona en el navegador del celular, la tablet o la computadora. Entras con tu correo y contraseña desde donde estés.</p></details>
-        <details><summary>No sé nada de contabilidad, ¿la puedo usar?<span aria-hidden="true">+</span></summary><p>Sí. Está pensada justamente para eso: anotas ventas y gastos con palabras de todos los días y BSS hace las cuentas por ti. Además puedes probarla con datos de ejemplo antes de cargar los tuyos.</p></details>
-        <details><summary>Ya tengo todo en Excel, ¿lo pierdo?<span aria-hidden="true">+</span></summary><p>No. Puedes importar tu inventario desde Excel, Word o Google Sheets, o pegar tu lista tal como la tienes, y tus movimientos desde un archivo CSV. BSS detecta solo qué columna es cada dato.</p></details>
-        <details><summary>¿Puede usarla alguien de mi equipo?<span aria-hidden="true">+</span></summary><p>Sí. Desde Ajustes le das acceso con su propio usuario. Puede cargar ventas, compras y productos, pero no borrar datos ni cambiar la configuración.</p></details>
-        <details><summary>¿Reemplaza a mi contador o emite facturas?<span aria-hidden="true">+</span></summary><p>No. BSS te ayuda a ordenar y entender tu negocio, y te da todo listo en Excel para tu contador. Los recibos y presupuestos no son facturas fiscales y el cálculo de IVA es orientativo.</p></details>
-        <details><summary>¿Mis datos están seguros?<span aria-hidden="true">+</span></summary><p>Sí. Toda la conexión está cifrada, las contraseñas se guardan de forma que nadie puede leerlas y cada negocio ve solo sus propios datos. Además se hace una copia de seguridad cifrada todos los días. Nunca vendemos ni compartimos tus datos para publicidad.</p></details>
-        <details><summary>¿Sirve para mi rubro?<span aria-hidden="true">+</span></summary><p>Sirve para cualquier negocio que venda productos o servicios: kioscos, almacenes, ropa, ferreterías, tecnología, gastronomía, emprendimientos y profesionales independientes. Tú decides qué productos, categorías y gastos cargar.</p></details>
-        <details><summary>¿Necesito internet para usarla?<span aria-hidden="true">+</span></summary><p>Sí, BSS guarda todo en la nube para que tus datos estén a salvo y los veas desde cualquier dispositivo. Usa muy pocos datos, así que alcanza con el plan del celular.</p></details>
-        <details><summary>¿Puedo usar otra moneda?<span aria-hidden="true">+</span></summary><p>Sí. Al crear la cuenta, BSS usa la moneda de tu país, y desde Ajustes puedes cambiarla por otra: pesos argentinos, dólares, pesos uruguayos, euros y varias más.</p></details>
-        <details><summary>¿Qué pasa si me olvido la contraseña?<span aria-hidden="true">+</span></summary><p>Tocas «¿Olvidaste tu contraseña?» al entrar y te llega un correo con un enlace para elegir una nueva. Tarda menos de un minuto.</p></details>
-        <details><summary>¿Qué pasa si dejo de usarla?<span aria-hidden="true">+</span></summary><p>Descargas todos tus datos en Excel y, si quieres, eliminas tu cuenta desde Ajustes. Se borra todo, sin trámites.</p></details>
-      </div>
-    </div>
-  </section>
-
   <section id="empezar" class="close" aria-labelledby="t-empezar">
     <div class="wrap">
       <div class="close-card">
@@ -526,7 +494,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 <footer>
   <div class="wrap">
     <span>© 2026 BSS · Business Solutions Software · Hecho por Simon Schmidt</span>
-    <nav aria-label="Enlaces"><a href="#preguntas">Preguntas</a><a href="/herramientas/calculadora-de-precios/">Calculadora de precios</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
+    <nav aria-label="Enlaces"><a href="/herramientas/calculadora-de-precios/">Calculadora de precios</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><a href="/preguntas/">FAQ</a><span>support.businesssoftware@gmail.com</span></nav>
   </div>
 </footer>
 

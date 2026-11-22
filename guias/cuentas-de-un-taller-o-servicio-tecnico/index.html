@@ -58,7 +58,7 @@
 
 * { box-sizing: border-box; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 a { color: inherit; }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
@@ -101,6 +101,8 @@ main section[id] { scroll-margin-top: 76px; }
 .nav .btn:hover { background: var(--ink); }
 .btn svg { width: 18px; height: 18px; }
 @media (max-width: 720px) { .nav a:not(.btn) { display: none; } }
+@media (max-width: 939px) { .nav a.nav-wide { display: none; } }
+@media (max-width: 759px) { .nav a.nav-mid { display: none; } }
 /* On most phones the brand line and the button did not fit side by side, so the
    sticky header broke into two rows and took twice the screen. */
 @media (max-width: 520px) { .top .wrap { flex-wrap: nowrap; } .brand small { display: none; } }
@@ -241,11 +243,11 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
   <div class="wrap">
     <a class="brand" href="/" aria-label="BSS, ir al inicio"><span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="currentColor"><rect x="2" y="2" width="17" height="17" rx="3.6"/><rect x="2" y="21" width="17" height="17" rx="3.6"/><circle cx="29.5" cy="29.5" r="8.5"/><path d="M29.5 29.5V24A5.5 5.5 0 0 1 35 29.5Z" fill="var(--bg)"/></svg></span><span><strong>BSS</strong><small>Business Solutions Software</small></span></a>
     <nav class="nav" aria-label="Secciones">
-      <a href="/#para-quien">Para quién</a>
+      <a href="/#catalogo">Catálogo</a>
       <a href="/#que-hace">Qué hace</a>
-      <a href="/#confianza">Confianza</a>
-      <a href="/#preguntas">Preguntas</a>
-      <a href="/herramientas/calculadora-de-precios/">Calculadora</a>
+      <a class="nav-mid" href="/#para-quien">Para quién</a>
+      <a class="nav-wide" href="/#confianza">Confianza</a>
+      <a class="nav-wide" href="/herramientas/calculadora-de-precios/">Calculadora</a>
       <a href="https://app.bssgestion.com.ar/entrar">Entrar</a>
       <a class="btn solid" href="https://app.bssgestion.com.ar/registro">Probar gratis</a>
     </nav>
@@ -360,7 +362,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
 <footer>
   <div class="wrap">
     <span>© 2026 BSS · Business Solutions Software · Hecho por Simon Schmidt</span>
-    <nav aria-label="Enlaces"><a href="/#preguntas">Preguntas</a><a href="/herramientas/calculadora-de-precios/">Calculadora de precios</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="/#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><span>support.businesssoftware@gmail.com</span></nav>
+    <nav aria-label="Enlaces"><a href="/herramientas/calculadora-de-precios/">Calculadora de precios</a><a href="/guias/como-llevar-las-cuentas-de-un-kiosco/">Guía: cuentas de un kiosco</a><a href="/guias/cuentas-de-un-taller-o-servicio-tecnico/">Guía: cuentas de un taller</a><a href="/#confianza">Confianza</a><a href="https://app.bssgestion.com.ar/terminos">Términos de uso</a><a href="https://app.bssgestion.com.ar/privacidad">Privacidad</a><a href="/preguntas/">FAQ</a><span>support.businesssoftware@gmail.com</span></nav>
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "34c6cefe4a0145269f7fbffafb29298b"}'></script>
